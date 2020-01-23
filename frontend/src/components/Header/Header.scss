@@ -1,0 +1,22 @@
+.HeaderComponent {
+  img.user_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+  }
+
+  button.logout {
+    margin-top: 2px;
+    background: none;
+    color: #fafafa;
+    font-weight: bold;
+  }
+
+  p.user_name {
+    color: #dadada;
+    position: absolute;
+    top: 30px;
+    right: 70px;
+  }
+}
