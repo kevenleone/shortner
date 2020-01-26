@@ -1,0 +1,25 @@
+.GetStarted {
+  margin: 5px;
+  margin-bottom: 10%;
+
+  .texts {
+    margin: 5% 0px 0px 10%;
+
+    h1 {
+      font-size: 70px;
+      color: hsl(260, 8%, 14%);
+    }
+
+    p {
+      font-size: 18px;
+      color: hsl(0, 0%, 75%);
+    }
+  }
+
+  @media (min-width: 800px) {
+    .illustration {
+      margin-left: 5%;
+      text-align: center;
+    }
+  }
+}

@@ -1,22 +1,16 @@
 .HeaderComponent {
-  img.user_avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    margin-left: 10px;
+  .navcontent {
+    margin: 0 60px !important;
   }
 
-  button.logout {
-    margin-top: 2px;
-    background: none;
-    color: #fafafa;
-    font-weight: bold;
+  .navbar {
+    margin-top: 10px;
+    background-color: white !important;
+    border-top: none;
+    border-bottom: none;
   }
 
-  p.user_name {
-    color: #dadada;
-    position: absolute;
-    top: 30px;
-    right: 70px;
+  .navbar-brand {
+    margin: 0 10%;
   }
 }
