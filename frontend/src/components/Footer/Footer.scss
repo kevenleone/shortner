@@ -1,0 +1,36 @@
+.Footer {
+    height: 300px;
+    background-color: #222;
+    color: white;
+    padding: 100px;
+
+    .logo {
+      fill: white !important;
+      filter: grayscale(100%);
+    }
+
+    h5 {
+      color: white;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        color: #999;
+        font-weight: 300;
+        letter-spacing: 2.2px;
+        font-size: 16px;
+      }
+    }
+
+    .social-medias {
+      img {
+        margin: 0 10px;
+      }
+    }
+  
+  }

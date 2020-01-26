@@ -1,0 +1,14 @@
+.Layout {
+  background-color: rgb(237, 240, 242) !important;
+  min-height: 105vh;
+  max-height: 150vh;
+  overflow-y: hidden; 
+  .content {
+    margin-top: 2%;
+    margin-left: 370px;
+    
+    h1 {
+      color: hsl(257, 27%, 26%);
+    }
+  }
+}

@@ -2,4 +2,27 @@
   .btn-short {
     margin-top: 30px !important;
   }
+
+  .main {
+    background-color: #E5E6F0;
+  }
+
+  .boost {
+    margin-top: -5%;
+    background-color: hsl(257, 27%, 26%);
+    padding: 60px;
+    text-align: center;
+    background-image: url('../../assets/images/bg-boost-desktop.svg'), url('../../assets/images/bg-shorten-desktop.svg');
+    background-position: right bottom, top left;
+    background-size: cover; 
+    h1 {
+      color: white;
+      font-size: 32px;
+    }
+
+    button {
+      margin-top: 20px;
+      
+    }
+  }
 }
