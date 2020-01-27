@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap');
 
+#root .App {
+  height: 100%;
+}
+
 .App {
   body, input, button {
     font-family: 'Poppins', sans-serif;
@@ -8,5 +12,9 @@
   body {
     font-size: 33px;
   }
+}
+
+* {
+  box-sizing: border-box;
 }
 
