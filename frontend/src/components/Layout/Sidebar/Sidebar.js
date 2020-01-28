@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Octicon } from 'octicons-react';
+import { EuiAvatar } from '@elastic/eui';
 import { Routes } from '../../../routelist';
+
 import './Sidebar.scss';
+
 
 export default function Sidebar() {
   const { pathname } = window.location;
@@ -10,7 +13,11 @@ export default function Sidebar() {
     <div className="Sidebar">
       <section>
         <div className="user">
-          <img src="https://media-exp2.licdn.com/dms/image/C4E03AQG2z3RDfKrVvg/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=LhzWNzzLsE006mXa0bFlIFt9IB85V9XUNVLHD5NfoNc" alt="keven profile" />
+          <EuiAvatar
+            size="xl"
+            name="Keven"
+            imageUrl="https://media-exp2.licdn.com/dms/image/C4E03AQG2z3RDfKrVvg/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=LhzWNzzLsE006mXa0bFlIFt9IB85V9XUNVLHD5NfoNc"
+          />
           <span className="username">Keven Leone</span>
           <span>Lead Developer</span>
         </div>

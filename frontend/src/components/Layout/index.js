@@ -1,6 +1,11 @@
 import React from 'react';
+import {
+  EuiText,
+  EuiPageContentBody,
+} from '@elastic/eui';
 import Sidebar from './Sidebar';
 import Header from './Header';
+
 
 import './Layout.scss';
 
@@ -10,7 +15,13 @@ export default function Layout({ children, title }) {
       <Header />
       <Sidebar />
       <main className="content">
-        <h1>{ title }</h1>
+        <div className="head">
+          <EuiPageContentBody>
+            <EuiText grow={false} size="m">
+              <h1>{title}</h1>
+            </EuiText>
+          </EuiPageContentBody>
+        </div>
         { children }
       </main>
     </div>

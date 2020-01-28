@@ -1,30 +1,14 @@
 .Dashboard {
-  .cards {
-    margin-top: 3%;
+  margin-right: 2%;
+
+  .charts {
+    margin-top: 40px;
   }
 
   .chartArea {
     background-color: white;
     padding: 20px;
-    margin-right: 20px;
+    margin-bottom: 50px;
   }
 
-  .card {
-    padding: 20px;
-    margin: 10px 50px 50px 0px;
-    min-width: 200px;
-
-    h3 {
-      font-size: 16px;
-      margin-bottom: 40px;
-    }
-
-    span.value {
-      font-size: 24px;
-    }
-
-    span.info {
-      font-size: 14px;
-    }
-  }
 }

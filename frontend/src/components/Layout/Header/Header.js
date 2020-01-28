@@ -1,37 +1,55 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
-} from 'reactstrap';
+  EuiHeader,
+  EuiHeaderSectionItem,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+  EuiHeaderSection,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+} from '@elastic/eui';
+
+// import Logo from '../../../assets/images/logo.svg';
+
 import './Header.scss';
-import Logo from '../../../assets/images/logo.svg';
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export default class extends Component {
+  constructor(props) {
+    super(props);
 
-  const toggle = () => setIsOpen(!isOpen);
-  return (
-    <div className="Header">
-      <Navbar color="light" light expand="md">
-        <div className="brandArea">
-          <NavbarBrand href="/#/">
-            <img alt="logo shortly" src={Logo} />
-          </NavbarBrand>
-        </div>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar className="navcontent">
-          <Nav>
-            <NavItem>Features</NavItem>
-          </Nav>
-          <Nav className="mr-auto" navbar />
-          <Nav>
-            <NavItem>
-              Logout
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
-};
+    this.state = {
+      isAppMenuOpen: false,
+    };
+  }
 
-export default Header;
+  render() {
+    return (
+      <div className="Header">
+        <EuiHeader className="header-eui">
+          <EuiHeaderSectionItem border="right">
+            <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
+          </EuiHeaderSectionItem>
+
+          <EuiHeaderLinks>
+            <EuiHeaderLink href="#" isActive>
+            Docs
+            </EuiHeaderLink>
+            <EuiHeaderLink href="#">Code</EuiHeaderLink>
+            <EuiHeaderLink iconType="help" href="#">
+            Help
+            </EuiHeaderLink>
+          </EuiHeaderLinks>
+          <EuiHeaderSection side="right">
+            <EuiHeaderSectionItem>
+              <EuiHeaderSectionItemButton aria-label="Search">
+                <EuiIcon type="search" size="m" />
+              </EuiHeaderSectionItemButton>
+            </EuiHeaderSectionItem>
+          </EuiHeaderSection>
+        </EuiHeader>
+      </div>
+    );
+  }
+}
