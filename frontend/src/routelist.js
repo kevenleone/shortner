@@ -1,10 +1,11 @@
 import {
-  graph, repo, settings, globe,
+  graph, settings, globe,
 } from 'octicons-react';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
+import LinkManagement from './pages/LinkManagement/LinkManagement';
 
 const Routes = [
   {
@@ -18,16 +19,9 @@ const Routes = [
   },
   {
     title: 'Link Management',
-    path: '/linkmanagement',
-    icon: repo,
-    active: true,
-    private: true,
-    exact: true,
-  },
-  {
-    title: 'Links',
     path: '/links',
     icon: globe,
+    component: LinkManagement,
     active: true,
     private: true,
     exact: true,

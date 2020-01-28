@@ -17,25 +17,25 @@ export default function Footer() {
         <Col>
           <h5>Features</h5>
           <div className="links">
-            <a href="#">Link Shortening</a>
-            <a href="#">Branded Links</a>
-            <a href="#">Analytics</a>
+            <a href="/">Link Shortening</a>
+            <a href="/">Branded Links</a>
+            <a href="/">Analytics</a>
           </div>
         </Col>
         <Col>
           <h5>Resources</h5>
           <div className="links">
-            <a href="#">Link Shortening</a>
-            <a href="#">Branded Links</a>
-            <a href="#">Analytics</a>
+            <a href="/">Link Shortening</a>
+            <a href="/">Branded Links</a>
+            <a href="/">Analytics</a>
           </div>
         </Col>
         <Col>
           <h5>Company</h5>
           <div className="links">
-            <a href="#">Link Shortening</a>
-            <a href="#">Branded Links</a>
-            <a href="#">Analytics</a>
+            <a href="/">Link Shortening</a>
+            <a href="/">Branded Links</a>
+            <a href="/">Analytics</a>
           </div>
         </Col>
         <Col className="social-medias">

@@ -14,14 +14,13 @@ import './Dashboard.scss';
 
 const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
 
-
 export default function Dashboard() {
   return (
     <div className="Dashboard">
       <EuiFlexGroup gutterSize="l">
         {
-        icons.map((item, index) => (
-          <EuiFlexItem key={index}>
+        icons.map((item) => (
+          <EuiFlexItem key={item}>
             <EuiCard
               icon={<EuiIcon size="xxl" type={`logo${item}`} />}
               title={`Elastic ${item}`}

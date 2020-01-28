@@ -20,7 +20,7 @@ export default function GetStarted() {
           </Button>
         </Col>
         <Col className="mr-5 illustration">
-          <img src={Illustration} />
+          <img alt="illustration" src={Illustration} />
         </Col>
       </Row>
     </div>
