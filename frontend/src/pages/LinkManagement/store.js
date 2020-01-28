@@ -66,8 +66,6 @@ const github = [
 
 const dob = new Date(1980, 1, 1);
 
-const index = 1;
-
 const createUsers = (countries) => [...Array(24).keys()].map((i) => ({
   id: i,
   firstName: i < 10 ? firstNames[i] : firstNames[i - 10],
@@ -95,14 +93,7 @@ export const createDataStore = () => {
         items = users;
       }
 
-      let pageOfItems;
-
-      if (!pageIndex && !pageSize) {
-        pageOfItems = items;
-      } else {
-        const startIndex = pageIndex * pageSize;
-        pageOfItems = items;
-      }
+      const pageOfItems = items;
 
       return {
         pageOfItems,

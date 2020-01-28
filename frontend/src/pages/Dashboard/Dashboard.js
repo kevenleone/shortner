@@ -1,8 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
 import {
-  EuiPanel,
-  EuiCode,
   EuiCard,
   EuiIcon,
   EuiFlexGroup,
@@ -34,12 +31,12 @@ export default function Dashboard() {
       </EuiFlexGroup>
 
       <div className="charts">
-        <Col className="chartArea" xs={6}>
+        <div className="chartArea" xs={6}>
           <Composed />
-        </Col>
-        <Col className="chartArea" xs={4}>
+        </div>
+        <div className="chartArea" xs={4}>
           <Line />
-        </Col>
+        </div>
       </div>
     </div>
   );

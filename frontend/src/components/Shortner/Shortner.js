@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Row, Col, Input, Label, Button,
+  Row, Col, Input, Button,
 } from 'reactstrap';
 import api, { baseURL } from '../../services/api';
 import './Shortner.scss';
@@ -8,6 +8,8 @@ import './Shortner.scss';
 export default function Shortner() {
   const [link, setLink] = useState('');
   const [short, setShort] = useState('');
+
+  console.log(short);
 
   async function handleSubmit() {
     if (link) {
