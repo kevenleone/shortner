@@ -9360,6 +9360,11 @@ react-focus-lock@^1.17.7:
     prop-types "^15.6.2"
     react-clientside-effect "^1.2.0"
 
+react-if@^3.4.3:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/react-if/-/react-if-3.4.3.tgz#bab45478dd0374b1c5fe44aa972a2fa921416a57"
+  integrity sha512-DddMrbjAA4lkVhhYJgoeKC9+dj950I9hx4KClhJXySTL3GsQ7hxl9eWkcqS2i/qWvfPiQheJOwTYQ+Wv2BNdMA==
+
 react-input-autosize@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.2.tgz#fcaa7020568ec206bc04be36f4eb68e647c4d8c2"

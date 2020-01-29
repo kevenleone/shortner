@@ -2,7 +2,7 @@ import {
   graph, settings, globe,
 } from 'octicons-react';
 import Home from './pages/Home';
-import SignIn from './pages/SignIn';
+import Sign from './pages/Sign';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
 import LinkManagement from './pages/LinkManagement/LinkManagement';
@@ -44,11 +44,11 @@ const Routes = [
     exact: true,
   },
   {
-    title: 'SignIn',
-    path: '/signin',
+    title: 'Sign',
+    path: '/sign',
     active: true,
     private: false,
-    component: SignIn,
+    component: Sign,
     exact: true,
   },
 ];

@@ -1,46 +1,49 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
-} from 'reactstrap';
+  EuiHeader,
+  EuiHeaderSectionItem,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+  EuiHeaderSection,
+} from '@elastic/eui';
+
 import './Header.scss';
-import Logo from '../../assets/images/logo.svg';
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+export default class extends Component {
+  constructor(props) {
+    super(props);
 
-  const toggle = () => setIsOpen(!isOpen);
-  return (
-    <div className="HeaderComponent">
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/#/">
-          <img alt="logo shortly" src={Logo} />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar className="navcontent">
-          <Nav>
-            <NavItem>Features</NavItem>
-          </Nav>
-          <Nav>
-            <NavItem>Pricing</NavItem>
-          </Nav>
-          <Nav>
-            <NavItem>Resources</NavItem>
-          </Nav>
-          <Nav className="mr-auto" navbar />
-          <Nav>
-            <NavItem>
-              SignIn
-            </NavItem>
-          </Nav>
-          <Nav>
-            <NavItem>
-              SignIn
-            </NavItem>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  );
-};
+    this.state = {
+      isAppMenuOpen: false,
+    };
+  }
 
-export default Header;
+  render() {
+    return (
+      <div className="Header">
+        <EuiHeader className="header-eui">
+          <EuiHeaderSectionItem border="right">
+            <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
+          </EuiHeaderSectionItem>
+
+          <EuiHeaderLinks>
+            <EuiHeaderLink href="#" isActive>
+            Docs
+            </EuiHeaderLink>
+            <EuiHeaderLink href="#">Code</EuiHeaderLink>
+            <EuiHeaderLink iconType="help" href="#">
+            Help
+            </EuiHeaderLink>
+          </EuiHeaderLinks>
+          <EuiHeaderSection side="right">
+            <EuiHeaderLinks>
+              <EuiHeaderLink iconType="user" href="/sign">Sign In</EuiHeaderLink>
+            </EuiHeaderLinks>
+          </EuiHeaderSection>
+        </EuiHeader>
+      </div>
+    );
+  }
+}
