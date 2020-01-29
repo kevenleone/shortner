@@ -14,7 +14,7 @@ import {
 import './In.scss';
 
 export default function SignIn() {
-  const { loginForm: { email, password } } = useSelector((state) => state.base);
+  const { softLoading, loginForm: { email, password } } = useSelector((state) => state.base);
   const [form, setForm] = useState({ email, password });
   const dispatch = useDispatch();
 
@@ -81,8 +81,7 @@ export default function SignIn() {
         <EuiSpacer />
 
         <EuiButton
-          fill
-          isLoading={false}
+          isLoading={softLoading}
           onClick={handleSubmit}
           iconSide="right"
         >

@@ -54,8 +54,8 @@ export default function SignUp() {
         className="backButton"
         type="button"
       >
-        <EuiIcon type="arrowLeft" />
-        <span>Sign In</span>
+        <EuiIcon size="l" type="arrowLeft" />
+        <span>Already Registered ?</span>
       </button>
       <EuiPageContentBody>
         <EuiText size="m"><h1>Save your account now</h1></EuiText>

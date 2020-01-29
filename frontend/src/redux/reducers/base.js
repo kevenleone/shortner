@@ -1,6 +1,8 @@
 const INITIAL_STATE = {
   loading: false,
+  softLoading: false,
   pageType: 'SignIn',
+  toasts: [],
   loggedUser: {},
   loginForm: {
     email: '',
@@ -21,6 +23,15 @@ export default function (state = INITIAL_STATE, action) {
     }
     case 'SET_LOGGEDUSER': {
       return { ...state, loggedUser: action.payload };
+    }
+    case 'ADD_TOAST': {
+      return { ...state, toasts: [...state.toasts, { id: `${Math.random()}`, ...action.payload }] };
+    }
+    case 'REMOVE_TOAST': {
+      return { ...state, toasts: state.toasts.slice(0, -1) };
+    }
+    case 'SET_SOFTLOADING': {
+      return { ...state, softLoading: !state.softLoading };
     }
     default:
       return state;

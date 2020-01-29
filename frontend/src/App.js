@@ -1,17 +1,23 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { EuiGlobalToastList } from '@elastic/eui';
+import { useSelector, useDispatch } from 'react-redux';
 import Routes from './routes';
-import store from './redux/store';
 import Load from './components/Layout/Load/Load';
 import './App.scss';
 
 function App() {
+  const { toasts } = useSelector((state) => state.base);
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <Provider store={store}>
-        <Load />
-        <Routes />
-      </Provider>
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={() => dispatch({ type: 'REMOVE_TOAST' })}
+        toastLifeTimeMs={6000}
+      />
+      <Load />
+      <Routes />
     </div>
   );
 }
