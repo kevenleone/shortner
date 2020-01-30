@@ -17,7 +17,7 @@ import './Up.scss';
 
 export default function SignUp() {
   const [form, setForm] = useState({
-    name: '', organization: '', email: '', password: '',
+    username: '', organization: '', email: '', password: '',
   });
 
 
@@ -65,7 +65,7 @@ export default function SignUp() {
 
       <EuiForm>
         <EuiFormRow label="Full Name">
-          <EuiFieldText name="name" value={form.name} onChange={handleChange} />
+          <EuiFieldText name="username" value={form.username} onChange={handleChange} />
         </EuiFormRow>
         <EuiFormRow label="Organization" helpText="Optional Field, used for team management">
           <EuiFieldText name="organization" value={form.organization} onChange={handleChange} />

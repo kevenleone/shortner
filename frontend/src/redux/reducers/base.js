@@ -3,7 +3,8 @@ const INITIAL_STATE = {
   softLoading: false,
   pageType: 'SignIn',
   toasts: [],
-  loggedUser: {},
+  token: localStorage.getItem('@token'),
+  loggedUser: JSON.parse(localStorage.getItem('@me') || '{}'),
   loginForm: {
     email: '',
     password: '',
@@ -22,7 +23,16 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, pageType: 'SignIn', loginForm: action.payload };
     }
     case 'SET_LOGGEDUSER': {
-      return { ...state, loggedUser: action.payload };
+      localStorage.setItem('@me', JSON.stringify({
+        username: 'Sidney Filho',
+        company: 'BRK Ambiental',
+        email: 'sidney@hotmail.com',
+      }));
+      return {
+        ...state,
+        token: action.payload.token,
+
+      };
     }
     case 'ADD_TOAST': {
       return { ...state, toasts: [...state.toasts, { id: `${Math.random()}`, ...action.payload }] };

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { When } from 'react-if';
 
 import {
   EuiHeader,
@@ -7,49 +8,59 @@ import {
   EuiHeaderLinks,
   EuiHeaderLink,
   EuiHeaderSection,
+  EuiConfirmModal,
+  EuiOverlayMask,
   EuiHeaderSectionItemButton,
   EuiIcon,
 } from '@elastic/eui';
 
-// import Logo from '../../../assets/images/logo.svg';
-
 import './Header.scss';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+export default function Header() {
+  const [showModal, setShowModal] = useState(false);
 
-    this.state = {
-      isAppMenuOpen: false,
-    };
+  function handleLogout() {
+    localStorage.removeItem('@token');
+    localStorage.removeItem('@me');
+    window.location.href = '/sign';
   }
 
-  render() {
-    return (
-      <div className="Header">
-        <EuiHeader className="header-eui">
-          <EuiHeaderSectionItem border="right">
-            <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
-          </EuiHeaderSectionItem>
+  return (
+    <div className="Header">
+      <When condition={showModal}>
+        <EuiOverlayMask>
+          <EuiConfirmModal
+            title="Do you want to leave?"
+            onCancel={() => setShowModal(false)}
+            onConfirm={handleLogout}
+            cancelButtonText="No, don't do it"
+            confirmButtonText="Yes, do it"
+            defaultFocusedButton="confirm"
+          />
+        </EuiOverlayMask>
+      </When>
+      <EuiHeader className="header-eui">
+        <EuiHeaderSectionItem border="right">
+          <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
+        </EuiHeaderSectionItem>
 
-          <EuiHeaderLinks>
-            <EuiHeaderLink href="#" isActive>
+        <EuiHeaderLinks>
+          <EuiHeaderLink href="#" isActive>
             Docs
-            </EuiHeaderLink>
-            <EuiHeaderLink href="#">Code</EuiHeaderLink>
-            <EuiHeaderLink iconType="help" href="#">
+          </EuiHeaderLink>
+          <EuiHeaderLink href="#">Code</EuiHeaderLink>
+          <EuiHeaderLink iconType="help" href="#">
             Help
-            </EuiHeaderLink>
-          </EuiHeaderLinks>
-          <EuiHeaderSection side="right">
-            <EuiHeaderSectionItem>
-              <EuiHeaderSectionItemButton aria-label="Search">
-                <EuiIcon type="search" size="m" />
-              </EuiHeaderSectionItemButton>
-            </EuiHeaderSectionItem>
-          </EuiHeaderSection>
-        </EuiHeader>
-      </div>
-    );
-  }
+          </EuiHeaderLink>
+        </EuiHeaderLinks>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
+            <EuiHeaderSectionItemButton aria-label="Search" onClick={() => setShowModal(true)}>
+              <EuiIcon type="exit" size="m" />
+            </EuiHeaderSectionItemButton>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    </div>
+  );
 }

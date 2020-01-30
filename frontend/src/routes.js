@@ -6,8 +6,7 @@ import Header from './components/Header';
 import Layout from './components/Layout';
 import { Routes } from './routelist';
 
-
-const isAuthenticated = true;
+const isAuthenticated = localStorage.getItem('@token');
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -20,7 +19,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           </Layout>
         </>
       ) : (
-        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        <Redirect to={{ pathname: '/sign', state: { from: props.location } }} />
       )
     )}
   />
@@ -30,10 +29,16 @@ const PublicRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) => (
-      <>
-        <Header />
-        <Component {...props} />
-      </>
+      isAuthenticated && window.location.pathname === '/sign' ? (
+        <Redirect to={{ pathname: '/dashboard' }} />
+      )
+        : (
+          <>
+            <Header />
+            <Component {...props} />
+          </>
+        )
+
     )}
   />
 );

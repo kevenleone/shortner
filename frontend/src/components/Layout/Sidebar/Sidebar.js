@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Octicon } from 'octicons-react';
 import { EuiAvatar } from '@elastic/eui';
@@ -6,8 +7,8 @@ import { Routes } from '../../../routelist';
 
 import './Sidebar.scss';
 
-
 export default function Sidebar() {
+  const { loggedUser: { company, username, photo } } = useSelector((state) => state.base);
   const { pathname } = window.location;
   return (
     <div className="Sidebar">
@@ -15,11 +16,11 @@ export default function Sidebar() {
         <div className="user">
           <EuiAvatar
             size="xl"
-            name="Keven"
-            imageUrl="https://media-exp2.licdn.com/dms/image/C4E03AQG2z3RDfKrVvg/profile-displayphoto-shrink_200_200/0?e=1585785600&v=beta&t=LhzWNzzLsE006mXa0bFlIFt9IB85V9XUNVLHD5NfoNc"
+            name={username}
+            imageUrl={photo}
           />
-          <span className="username">Keven Leone</span>
-          <span>Lead Developer</span>
+          <span className="username">{username}</span>
+          <span>{company}</span>
         </div>
         <div>
           <ul>

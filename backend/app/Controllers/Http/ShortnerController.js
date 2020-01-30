@@ -21,7 +21,6 @@ class ShortnerController {
    * @param {View} ctx.view
    */
   async index ({ request, auth, response, view }) {
-    console.log(auth.user.id)
     const shortners = await Shortner
       .query()
       .where('user_id', auth.user.id)
