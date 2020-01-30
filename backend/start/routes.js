@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +14,20 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
+const Route = use('Route');
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+  return { greeting: 'Hello world in JSON' };
+});
 
-Route.post('/register', 'AuthController.register')
-Route.post('/auth', 'AuthController.authenticate')
+Route.post('/register', 'AuthController.register');
+Route.post('/auth', 'AuthController.authenticate');
 
 Route.group(() => {
   Route
     .resource('shortner', 'ShortnerController')
     .apiOnly()
-    .except('update')
-}).middleware('auth')
+    .except('update');
+}).middleware('auth');
 
-Route.get('/r/:hash', 'AppController.index')
+Route.get('/r/:hash', 'AppController.index');

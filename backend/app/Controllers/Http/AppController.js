@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
 const Shortner = use('App/Models/Shortner');
 
 class AppController {
-  async index({ request, response }) {
+  async index ({ request, response }) {
     const { hash } = request.params;
     const shortner = await Shortner.findBy('hash_link', hash);
     if (shortner) {
@@ -15,4 +15,4 @@ class AppController {
   }
 }
 
-module.exports = AppController
+module.exports = AppController;

@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-const uuid = require('uuid/v4')
-const Shortner = use('App/Models/Shortner')
+const uuid = require('uuid/v4');
+const Shortner = use('App/Models/Shortner');
 
 /**
  * Resourceful controller for interacting with shortners
@@ -25,7 +25,7 @@ class ShortnerController {
       .query()
       .where('user_id', auth.user.id)
       .fetch();
-    return {shortners};
+    return { shortners };
   }
 
   /**
@@ -71,7 +71,7 @@ class ShortnerController {
    */
   async update ({ params, request, response }) {
     const shortner = await Shortner.findOrFail(params.id);
-    const active = request.only(['active'])
+    const active = request.only(['active']);
     shortner.active = active;
     await shortner.save();
   }
@@ -93,4 +93,4 @@ class ShortnerController {
   }
 }
 
-module.exports = ShortnerController
+module.exports = ShortnerController;
