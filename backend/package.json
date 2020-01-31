@@ -1,5 +1,5 @@
 {
-  "name": "adonis-api-app",
+  "name": "shortner-backend",
   "version": "4.1.0",
   "adonis-version": "4.1.0",
   "description": "Adonisjs boilerplate for API server with pre-configured JWT",
@@ -12,8 +12,8 @@
     "adonisjs",
     "adonis-app"
   ],
-  "author": "",
-  "license": "UNLICENSED",
+  "author": "Keven Leone <keven.santos.sz@gmail.com>",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@adonisjs/ace": "^5.0.8",

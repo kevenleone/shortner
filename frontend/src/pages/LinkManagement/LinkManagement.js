@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   EuiInMemoryTable,
   EuiLink,
   EuiHealth,
 } from '@elastic/eui';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { createDataStore } from './store';
-
-const store = createDataStore();
-
+import { baseURL } from '../../services/api';
+import Add from '../../components/Link/Add';
 
 export default function () {
+  const dispatch = useDispatch();
+  const { shortners } = useSelector((state) => state.shortner);
+
+  function getAllShortners() {
+  }
+
+  useEffect(() => {
+    dispatch({ type: 'GET_MYSHORTNERS_SAGA' });
+    getAllShortners();
+  }, []);
+
   const actions = [
     {
       name: 'Delete',
@@ -40,52 +50,49 @@ export default function () {
   ];
   const columns = [
     {
-      field: 'firstName',
+      field: 'hash_link',
       name: 'Shorten Link',
       sortable: true,
-      render: (name) => (
-        <EuiLink href="#" target="_blank">
-          {name}
-        </EuiLink>
-      ),
+      render: (name) => {
+        const link = `${baseURL}/r/${name}`;
+        return (
+          <EuiLink href={link} target="_blank">
+            {link}
+          </EuiLink>
+        );
+      },
     },
     {
-      field: 'lastName',
+      field: 'original_link',
       name: 'Original Link',
       truncateText: true,
       sortable: true,
       render: (name) => (
-        <EuiLink href="#" target="_blank">
+        <EuiLink href={name} target="_blank">
           {name}
         </EuiLink>
       ),
     },
     {
-      field: 'github',
+      field: 'hits',
       name: 'Hits',
+      sortable: true,
+      dataType: 'number',
     },
     {
-      field: 'dateOfBirth',
+      field: 'created_at',
       name: 'Created At',
       dataType: 'date',
       render: (date) => moment(date).toISOString(),
     },
+
     {
-      field: 'nationality',
-      name: 'Most accessed in',
-      sortable: true,
-      render: (countryCode) => {
-        const country = store.getCountry(countryCode);
-        return `${country.flag} ${country.name}`;
-      },
-    },
-    {
-      field: 'online',
-      name: 'Online',
+      field: 'active',
+      name: 'Active',
       dataType: 'boolean',
-      render: (online) => {
-        const color = online ? 'success' : 'danger';
-        const label = online ? 'Online' : 'Offline';
+      render: (active) => {
+        const color = active ? 'success' : 'danger';
+        const label = active ? 'Online' : 'Offline';
         return <EuiHealth color={color}>{label}</EuiHealth>;
       },
     },
@@ -94,8 +101,6 @@ export default function () {
       actions,
     },
   ];
-
-  const items = store.users.filter((user, index) => index < 10);
 
   const getRowProps = (item) => {
     const { id } = item;
@@ -117,13 +122,26 @@ export default function () {
   };
 
   return (
-    <EuiInMemoryTable
-      items={items}
-      columns={columns}
-      rowProps={getRowProps}
-      cellProps={getCellProps}
-      sorting
-      hasActions={actions}
-    />
+    <>
+      <Add />
+      <EuiInMemoryTable
+        items={shortners}
+        columns={columns}
+        rowProps={getRowProps}
+        cellProps={getCellProps}
+        sorting
+        hasActions={actions}
+      />
+    </>
   );
 }
+
+// {
+//   field: 'nationality',
+//   name: 'Most accessed in',
+//   sortable: true,
+//   render: (countryCode) => {
+//     const country = store.getCountry(countryCode);
+//     return `${country.flag} ${country.name}`;
+//   },
+// },
