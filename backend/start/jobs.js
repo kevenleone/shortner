@@ -1,1 +1,1 @@
-module.exports = ['App/Jobs/UserRegisterEmail'];
+module.exports = ['App/Jobs/UserRegisterEmail', 'App/Jobs/VisitLookup'];
