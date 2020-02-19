@@ -7,8 +7,9 @@ class AnalyticsSchema extends Schema {
   up () {
     this.create('analytics', (table) => {
       table.increments();
-      table.string('os', 50).notNullable();
+      table.enum('status', ['FORWARD', 'EXPIRED', 'DISABLED']);
       table.string('browser', 150).notNullable();
+      table.string('os', 50).notNullable();
       table.string('ip', 20).notNullable();
       table
         .integer('region_id')

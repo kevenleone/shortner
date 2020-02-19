@@ -7,8 +7,10 @@ class ShortnerSchema extends Schema {
   up () {
     this.create('shortners', (table) => {
       table.increments();
-      table.string('hash_link', 240).notNullable();
-      table.string('original_link', 240).notNullable();
+      table.string('hash', 10).notNullable();
+      table.string('url', 240).notNullable();
+      table.integer('expires_in');
+      table.integer('hits_limit').defaultTo(0);
       table.boolean('active').defaultTo(true);
       table.integer('hits').defaultTo(0);
       table

@@ -20,9 +20,7 @@ class VisiterLookup {
   }
 
   async handle (job) {
-    const { headers, ip, shortner } = job.data;
-    // const lookup = geoipLite.lookup('186.208.5.225');
-
+    const { headers, ip = '186.208.5.225', shortner } = job.data;
     const lookup = geoipLite.lookup(ip);
     const agent = useragent.parse(headers['user-agent']);
     const [browser = 'Other'] = browsersList.filter(filterInBrowser(agent));
