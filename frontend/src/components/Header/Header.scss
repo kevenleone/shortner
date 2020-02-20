@@ -1,16 +1,16 @@
-.HeaderComponent {
+.Header {
+ 
   .navcontent {
     margin: 0 60px !important;
   }
 
   .navbar {
-    margin-top: 10px;
     background-color: white !important;
-    border-top: none;
-    border-bottom: none;
+    z-index: 999;
+    min-height: auto;
   }
 
   .navbar-brand {
-    margin: 0 10%;
+    margin: 0 50px;
   }
 }

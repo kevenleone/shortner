@@ -1,49 +1,37 @@
-import React, { Component } from 'react';
-
+import React, { useState } from 'react';
 import {
-  EuiHeader,
-  EuiHeaderSectionItem,
-  EuiHeaderLogo,
-  EuiHeaderLinks,
-  EuiHeaderLink,
-  EuiHeaderSection,
-} from '@elastic/eui';
-
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+} from 'reactstrap';
 import './Header.scss';
+import Logo from '../../assets/images/logo.svg';
 
-export default class extends Component {
-  constructor(props) {
-    super(props);
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.state = {
-      isAppMenuOpen: false,
-    };
-  }
+  const toggle = () => setIsOpen(!isOpen);
+  return (
+    <div className="Header">
+      <Navbar color="light" light expand="md">
+        <div className="brandArea">
+          <NavbarBrand href="/#/">
+            <img alt="logo shortly" src={Logo} />
+          </NavbarBrand>
+        </div>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar className="navcontent">
+          <Nav>
+            <NavItem>Features</NavItem>
+          </Nav>
+          <Nav className="mr-auto" navbar />
+          <Nav>
+            <NavItem>
+              Logout
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className="Header">
-        <EuiHeader className="header-eui">
-          <EuiHeaderSectionItem border="right">
-            <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
-          </EuiHeaderSectionItem>
-
-          <EuiHeaderLinks>
-            <EuiHeaderLink href="#" isActive>
-            Docs
-            </EuiHeaderLink>
-            <EuiHeaderLink href="#">Code</EuiHeaderLink>
-            <EuiHeaderLink iconType="help" href="#">
-            Help
-            </EuiHeaderLink>
-          </EuiHeaderLinks>
-          <EuiHeaderSection side="right">
-            <EuiHeaderLinks>
-              <EuiHeaderLink iconType="user" href="/sign">Sign In</EuiHeaderLink>
-            </EuiHeaderLinks>
-          </EuiHeaderSection>
-        </EuiHeader>
-      </div>
-    );
-  }
-}
+export default Header;

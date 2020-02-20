@@ -1,10 +1,5 @@
 const INITIAL_STATE = {
-  shortners: [{
-    id: 1,
-    firstName: 'keven',
-    lastName: 'leone',
-    flag: 'ZA',
-  }],
+  shortners: [],
 };
 
 export default function (state = INITIAL_STATE, action) {

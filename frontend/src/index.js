@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import store from './redux/store';
 
-import '@elastic/eui/dist/eui_theme_light.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render((
   <Provider store={store}>

@@ -12,6 +12,7 @@ import {
   EuiFormRow,
   EuiModal,
   EuiSwitch,
+  EuiDatePicker,
 } from '@elastic/eui';
 
 import { When } from 'react-if';
@@ -20,24 +21,32 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function Add() {
   const { shortners } = useSelector((state) => state.shortner);
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
-  const [active, setActive] = useState(false);
-  const [originalLink, setOriginalLink] = useState('');
+  const [showModal, setShowModal] = useState(true);
+
+  const [form, setForm] = useState({ url: '', active: false, expires_in: null });
+
+  console.log(showModal)
+
+  function handleChange({ target: { name, value, checked } }) {
+    form[name] = name === 'active' ? checked : value;
+    setForm({ ...form });
+  }
 
   useEffect(() => {
     if (showModal) {
-      setShowModal(false);
+      // setShowModal(false);
     }
   }, [shortners]);
 
   function handleSubmit() {
-    if (originalLink) {
-      dispatch({
-        type: 'ADD_SHORTNER_SAGA',
-        payload: { original_link: originalLink, active },
-      });
+    if (form.url) {
+      // dispatch({
+      //   type: 'ADD_SHORTNER_SAGA',
+      //   payload: form,
+      // });
     }
   }
+
   return (
     <div>
       <div style={{ marginBottom: 20 }}>
@@ -58,22 +67,33 @@ export default function Add() {
 
             <EuiModalBody>
               <EuiForm>
-                <EuiFormRow label="A link to short">
-                  <EuiFieldText
-                    name="original_link"
-                    value={originalLink}
-                    onChange={({ target: { value } }) => setOriginalLink(value)}
-                  />
-                </EuiFormRow>
-
-                <EuiFormRow>
+              <EuiFormRow>
                   <EuiSwitch
                     name="active"
                     label="The link is active?"
-                    checked={active}
-                    onChange={({ target: { checked } }) => setActive(checked)}
+                    checked={form.active}
+                    onChange={handleChange}
                   />
                 </EuiFormRow>
+                <EuiFormRow>
+                <EuiDatePicker
+                  showTimeSelect
+                  name="expires_in"
+                  selected={form.expires_in}
+                  onChange={handleChange}
+                  placeholder="Placeholder text"
+                />
+
+                </EuiFormRow>
+                <EuiFormRow label="A link to short">
+                  <EuiFieldText
+                    name="url"
+                    value={form.url}
+                    onChange={handleChange}
+                  />
+                </EuiFormRow>
+
+              
               </EuiForm>
             </EuiModalBody>
 

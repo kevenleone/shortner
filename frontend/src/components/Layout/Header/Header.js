@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
-import { When } from 'react-if';
-
 import {
-  EuiHeader,
-  EuiHeaderSectionItem,
-  EuiHeaderLogo,
-  EuiHeaderLinks,
-  EuiHeaderLink,
-  EuiHeaderSection,
-  EuiConfirmModal,
-  EuiOverlayMask,
-  EuiHeaderSectionItemButton,
-  EuiIcon,
-} from '@elastic/eui';
-
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+} from 'reactstrap';
 import './Header.scss';
+import Logo from '../../../assets/images/logo.svg';
 
-export default function Header() {
-  const [showModal, setShowModal] = useState(false);
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   function handleLogout() {
     localStorage.removeItem('@token');
@@ -25,42 +14,30 @@ export default function Header() {
     window.location.href = '/sign';
   }
 
+  const toggle = () => setIsOpen(!isOpen);
   return (
     <div className="Header">
-      <When condition={showModal}>
-        <EuiOverlayMask>
-          <EuiConfirmModal
-            title="Do you want to leave?"
-            onCancel={() => setShowModal(false)}
-            onConfirm={handleLogout}
-            cancelButtonText="No, don't do it"
-            confirmButtonText="Yes, do it"
-            defaultFocusedButton="confirm"
-          />
-        </EuiOverlayMask>
-      </When>
-      <EuiHeader className="header-eui">
-        <EuiHeaderSectionItem border="right">
-          <EuiHeaderLogo href="#">Shortly</EuiHeaderLogo>
-        </EuiHeaderSectionItem>
-
-        <EuiHeaderLinks>
-          <EuiHeaderLink href="#" isActive>
-            Docs
-          </EuiHeaderLink>
-          <EuiHeaderLink href="#">Code</EuiHeaderLink>
-          <EuiHeaderLink iconType="help" href="#">
-            Help
-          </EuiHeaderLink>
-        </EuiHeaderLinks>
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>
-            <EuiHeaderSectionItemButton aria-label="Search" onClick={() => setShowModal(true)}>
-              <EuiIcon type="exit" size="m" />
-            </EuiHeaderSectionItemButton>
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
+      <Navbar color="light" light expand="md">
+        <div className="brandArea">
+          <NavbarBrand href="/#/">
+            <img alt="logo shortly" src={Logo} />
+          </NavbarBrand>
+        </div>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar className="navcontent">
+          <Nav>
+            <NavItem>Features</NavItem>
+          </Nav>
+          <Nav className="mr-auto" navbar />
+          <Nav>
+            <NavItem onClick={handleLogout}>
+              Logout
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
-}
+};
+
+export default Header;
