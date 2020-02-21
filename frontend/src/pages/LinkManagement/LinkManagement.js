@@ -1,9 +1,4 @@
 import React, { useEffect } from 'react';
-import {
-  EuiInMemoryTable,
-  EuiLink,
-  EuiHealth,
-} from '@elastic/eui';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { baseURL } from '../../services/api';
@@ -55,11 +50,6 @@ export default function () {
       sortable: true,
       render: (name) => {
         const link = `${baseURL}/r/${name}`;
-        return (
-          <EuiLink href={link} target="_blank">
-            {link}
-          </EuiLink>
-        );
       },
     },
     {
@@ -67,11 +57,6 @@ export default function () {
       name: 'Original Link',
       truncateText: true,
       sortable: true,
-      render: (name) => (
-        <EuiLink href={name} target="_blank">
-          {name}
-        </EuiLink>
-      ),
     },
     {
       field: 'hits',
@@ -93,7 +78,6 @@ export default function () {
       render: (active) => {
         const color = active ? 'success' : 'danger';
         const label = active ? 'Online' : 'Offline';
-        return <EuiHealth color={color}>{label}</EuiHealth>;
       },
     },
     {
@@ -124,14 +108,14 @@ export default function () {
   return (
     <>
       <Add />
-      <EuiInMemoryTable
+      {/* <EuiInMemoryTable
         items={shortners}
         columns={columns}
         rowProps={getRowProps}
         cellProps={getCellProps}
         sorting
         hasActions={actions}
-      />
+      /> */}
     </>
   );
 }

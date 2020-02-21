@@ -1,94 +1,51 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  EuiText,
-  EuiPageContentBody,
-  EuiForm,
-  EuiFormRow,
-  EuiFieldText,
-  EuiFieldPassword,
-  EuiSpacer,
-  EuiButton,
-} from '@elastic/eui';
+import { Button, Row } from 'reactstrap';
+import { Form } from '@unform/web';
+import { Input } from '../../Form';
 
 import './In.scss';
 
 export default function SignIn() {
-  const { softLoading, loginForm: { email, password } } = useSelector((state) => state.base);
-  const [form, setForm] = useState({ email, password });
+  const { softLoading } = useSelector((state) => state.base);
   const dispatch = useDispatch();
 
   function openSignUpPage() {
     dispatch({ type: 'SET_PAGETYPE_SAGA', payload: { pageType: 'SignUp' } });
   }
 
-  function handleChange(e) {
-    const { target: { name, value } } = e;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  }
-
-  function handleSubmit() {
-    const copyForm = { ...form };
-    const hasInvalidValues = Object.values(copyForm).filter((value) => !value);
-
-    if (hasInvalidValues.length) {
-      alert('Any field is not fill');
-      return;
-    }
-
-    console.log('oi');
-
-    dispatch({ type: 'SIGNIN_SAGA', payload: form });
+  function handleSubmit(payload) {
+    dispatch({ type: 'SIGNIN_SAGA', payload });
   }
 
   return (
     <div className="SignIn">
-      <EuiPageContentBody>
-        <EuiText size="m"><h1>Log in now</h1></EuiText>
-        <EuiText>And have access to your Dashboard and Shornter Management</EuiText>
-      </EuiPageContentBody>
-      <EuiSpacer />
+      <h1>Log into your Account</h1>
 
-      <EuiForm>
-        <EuiFormRow label="Email Address">
-          <EuiFieldText
-            value={form.email}
-            onChange={handleChange}
-            name="email"
-          />
-        </EuiFormRow>
-        <EuiFormRow label="Password">
-          <EuiFieldPassword
-            value={form.password}
-            onChange={handleChange}
-            name="password"
-          />
-        </EuiFormRow>
+      <hr />
 
-        <EuiSpacer />
+      <Form onSubmit={handleSubmit}>
+        <Input label="Email" name="username" />
+        <Input label="Password" name="password" type="password" />
 
-        <button
-          onClick={openSignUpPage}
-          className="signUpButton"
+        <Button
+          outline
+          color="info"
           type="button"
+          onClick={openSignUpPage}
         >
           Not Registered ? Sign up now
-        </button>
+        </Button>
 
-        <EuiSpacer />
+        <hr />
 
-        <EuiButton
-          isLoading={softLoading}
-          onClick={handleSubmit}
-          iconSide="right"
+        <Button
+          type="submit"
+          color="primary"
         >
           Sign In
-        </EuiButton>
-      </EuiForm>
-
+        </Button>
+      </Form>
     </div>
   );
 }

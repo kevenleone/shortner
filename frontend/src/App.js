@@ -1,21 +1,14 @@
 import React from 'react';
-import { EuiGlobalToastList } from '@elastic/eui';
-import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import Routes from './routes';
 import Load from './components/Layout/Load/Load';
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-  const { toasts } = useSelector((state) => state.base);
-  const dispatch = useDispatch();
-
   return (
     <div className="App">
-      <EuiGlobalToastList
-        toasts={toasts}
-        dismissToast={() => dispatch({ type: 'REMOVE_TOAST' })}
-        toastLifeTimeMs={6000}
-      />
+      <ToastContainer />
       <Load />
       <Routes />
     </div>

@@ -1,91 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-
-import {
-  EuiText,
-  EuiIcon,
-  EuiPageContentBody,
-  EuiForm,
-  EuiFormRow,
-  EuiFieldText,
-  EuiFieldPassword,
-  EuiSpacer,
-  EuiButton,
-} from '@elastic/eui';
-
+import { Button } from 'reactstrap';
+import { Form } from '@unform/web';
+import { Input } from '../../Form';
 import './Up.scss';
 
 export default function SignUp() {
-  const [form, setForm] = useState({
-    username: '', organization: '', email: '', password: '',
-  });
-
-
   const dispatch = useDispatch();
 
   function openSignInPage() {
     dispatch({ type: 'SET_PAGETYPE_SAGA', payload: { pageType: 'SignIn' } });
   }
 
-  function handleChange(e) {
-    const { target: { name, value } } = e;
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  }
-
-  function handleSubmit() {
-    const copyForm = { ...form };
-    const hasInvalidValues = Object.values(copyForm).filter((value) => !value);
-
-    if (hasInvalidValues.length) {
-      alert('Any field is not fill');
-      return;
-    }
-
-    dispatch({ type: 'SIGNUP_SAGA', payload: form });
+  function handleSubmit(payload) {
+    dispatch({ type: 'SIGNUP_SAGA', payload });
   }
 
   return (
     <div className="SignUp">
-      <button
+      <h1>Create your account now</h1>
+      <p>Get unlimited access for creation of Shortned links with metrics</p>
+      <Button
+        outline
+        color="info"
         onClick={openSignInPage}
-        className="backButton"
         type="button"
       >
-        <EuiIcon size="l" type="arrowLeft" />
-        <span>Already Registered ?</span>
-      </button>
-      <EuiPageContentBody>
-        <EuiText size="m"><h1>Save your account now</h1></EuiText>
-        <EuiText>Get unlimited access for creation of Shortned links with metrics</EuiText>
-      </EuiPageContentBody>
-      <EuiSpacer />
+        Already Registered ?
+      </Button>
+      <hr />
 
-      <EuiForm>
-        <EuiFormRow label="Full Name">
-          <EuiFieldText name="username" value={form.username} onChange={handleChange} />
-        </EuiFormRow>
-        <EuiFormRow label="Organization" helpText="Optional Field, used for team management">
-          <EuiFieldText name="organization" value={form.organization} onChange={handleChange} />
-        </EuiFormRow>
-        <EuiFormRow label="Email Address">
-          <EuiFieldText name="email" value={form.email} onChange={handleChange} />
-        </EuiFormRow>
-        <EuiFormRow label="Password">
-          <EuiFieldPassword name="password" value={form.password} onChange={handleChange} />
-        </EuiFormRow>
-        <EuiButton
-          fill
-          isLoading={false}
-          iconType="save"
-          iconSide="right"
-          onClick={handleSubmit}
+      <Form onSubmit={handleSubmit}>
+        <Input name="username" label="Full Name" />
+        <Input name="organization" label="Organization" />
+        <Input name="email" label="Email Address" />
+        <Input name="password" label="Password" type="password" />
+        <Button
+          outline
+          type="submit"
+          color="primary"
         >
           Register
-        </EuiButton>
-      </EuiForm>
+        </Button>
+      </Form>
 
     </div>
   );

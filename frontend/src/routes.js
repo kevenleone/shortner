@@ -34,7 +34,6 @@ const PublicRoute = ({ component: Component, ...rest }) => (
       )
         : (
           <>
-            <Header />
             <Component {...props} />
           </>
         )

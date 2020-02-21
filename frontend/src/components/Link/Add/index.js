@@ -1,19 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {
-  EuiButton,
-  EuiButtonEmpty,
-  EuiModalFooter,
-  EuiModalBody,
-  EuiForm,
-  EuiModalHeaderTitle,
-  EuiModalHeader,
-  EuiOverlayMask,
-  EuiFieldText,
-  EuiFormRow,
-  EuiModal,
-  EuiSwitch,
-  EuiDatePicker,
-} from '@elastic/eui';
 
 import { When } from 'react-if';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,7 +10,7 @@ export default function Add() {
 
   const [form, setForm] = useState({ url: '', active: false, expires_in: null });
 
-  console.log(showModal)
+  console.log(showModal);
 
   function handleChange({ target: { name, value, checked } }) {
     form[name] = name === 'active' ? checked : value;
@@ -49,64 +34,7 @@ export default function Add() {
 
   return (
     <div>
-      <div style={{ marginBottom: 20 }}>
-        <EuiButton onClick={() => setShowModal(true)} fill>
-        Create Shortner
-        </EuiButton>
-      </div>
-      <When condition={showModal}>
-        <EuiOverlayMask>
-          <EuiModal
-            onClose={() => setShowModal(false)}
-            initialFocus="[name=popswitch]"
-            maxWidth={600}
-          >
-            <EuiModalHeader>
-              <EuiModalHeaderTitle>Add Shortner</EuiModalHeaderTitle>
-            </EuiModalHeader>
-
-            <EuiModalBody>
-              <EuiForm>
-              <EuiFormRow>
-                  <EuiSwitch
-                    name="active"
-                    label="The link is active?"
-                    checked={form.active}
-                    onChange={handleChange}
-                  />
-                </EuiFormRow>
-                <EuiFormRow>
-                <EuiDatePicker
-                  showTimeSelect
-                  name="expires_in"
-                  selected={form.expires_in}
-                  onChange={handleChange}
-                  placeholder="Placeholder text"
-                />
-
-                </EuiFormRow>
-                <EuiFormRow label="A link to short">
-                  <EuiFieldText
-                    name="url"
-                    value={form.url}
-                    onChange={handleChange}
-                  />
-                </EuiFormRow>
-
-              
-              </EuiForm>
-            </EuiModalBody>
-
-            <EuiModalFooter>
-              <EuiButtonEmpty onClick={() => setShowModal(false)}>Cancel</EuiButtonEmpty>
-
-              <EuiButton onClick={handleSubmit} fill>
-                Save
-              </EuiButton>
-            </EuiModalFooter>
-          </EuiModal>
-        </EuiOverlayMask>
-      </When>
+     Hi
     </div>
   );
 }

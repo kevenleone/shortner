@@ -1,8 +1,6 @@
 import { call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
-import { constants } from '../../config';
-
-const { TOAST: { ERROR } } = constants;
 
 export function* setPageType(pageType) {
   yield put({ type: 'SET_PAGETYPE', payload: pageType });
@@ -16,13 +14,7 @@ export function* signUp(action) {
     delete form.password;
     yield put({ type: 'SET_FORMUSER', payload: form });
   } catch (e) {
-    yield put({
-      type: 'ADD_TOAST',
-      payload: {
-        ...ERROR,
-        text: e.message,
-      },
-    });
+    toast.error(e.message);
   }
 }
 
@@ -37,13 +29,7 @@ export function* signIn(action) {
     yield put({ type: 'SET_LOGGEDUSER', payload: response.data });
     window.location.href = '/dashboard';
   } catch (e) {
-    yield put({
-      type: 'ADD_TOAST',
-      payload: {
-        ...ERROR,
-        text: 'Invalid Credentials, try again',
-      },
-    });
+    toast.error(e.message);
   }
   yield put({ type: 'SET_SOFTLOADING' });
 }

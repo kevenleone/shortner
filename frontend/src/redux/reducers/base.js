@@ -34,12 +34,6 @@ export default function (state = INITIAL_STATE, action) {
 
       };
     }
-    case 'ADD_TOAST': {
-      return { ...state, toasts: [...state.toasts, { id: `${Math.random()}`, ...action.payload }] };
-    }
-    case 'REMOVE_TOAST': {
-      return { ...state, toasts: state.toasts.slice(0, -1) };
-    }
     case 'SET_SOFTLOADING': {
       return { ...state, softLoading: !state.softLoading };
     }
