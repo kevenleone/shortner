@@ -37,12 +37,12 @@ class ShortnerController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const data = request.only(['original_link', 'active']);
-    const [hash_link] = uuid().split('-');
+    const data = request.only(['url', 'active']);
+    const [hash] = uuid().split('-');
     const shortner = await Shortner.create({
       hits: 0,
       user_id: auth.user.id,
-      hash_link,
+      hash,
       ...data
     });
     return shortner;
