@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { push } from 'connected-react-router';
 import api from '../../services/api';
 
 export function* setPageType(pageType) {
@@ -24,10 +25,10 @@ export function* signIn(action) {
 
   try {
     const response = yield call(api.post, '/auth', form);
-    localStorage.setItem('@token', response.data.token);
+    localStorage.setItem('@token', response.data.token.token);
     delete form.password;
     yield put({ type: 'SET_LOGGEDUSER', payload: response.data });
-    window.location.href = '/dashboard';
+    yield put(push('/dashboard'));
   } catch (e) {
     toast.error(e.message);
   }

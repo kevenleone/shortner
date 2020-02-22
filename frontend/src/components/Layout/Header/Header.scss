@@ -21,4 +21,16 @@
       font-size: 26px;
     }
   }
+
+  .right {
+    width: calc(100% - 300px);
+    display: flex;
+    align-items: center;
+
+    .pull-right {
+      margin-left: 95%;
+      cursor: pointer;
+      color: white;
+    }
+  }
 }
