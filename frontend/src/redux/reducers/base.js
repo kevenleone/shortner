@@ -23,15 +23,12 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, pageType: 'SignIn', loginForm: action.payload };
     }
     case 'SET_LOGGEDUSER': {
-      localStorage.setItem('@me', JSON.stringify({
-        username: 'Sidney Filho',
-        company: 'BRK Ambiental',
-        email: 'sidney@hotmail.com',
-      }));
+      const { user: loggedUser, token } = action.payload;
+      localStorage.setItem('@me', JSON.stringify(loggedUser));
       return {
         ...state,
-        token: action.payload.token,
-
+        token,
+        loggedUser,
       };
     }
     case 'SET_SOFTLOADING': {

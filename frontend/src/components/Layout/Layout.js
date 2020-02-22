@@ -11,7 +11,7 @@ export default function Layout({ children, title }) {
       <Sidebar />
       <main className="content">
         <div className="head">
-          <h1>{title}</h1>
+          <span>{title}</span>
         </div>
         <div className="children_content">
           { children }

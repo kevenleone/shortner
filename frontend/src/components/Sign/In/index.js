@@ -25,7 +25,7 @@ export default function SignIn() {
       <hr />
 
       <Form onSubmit={handleSubmit}>
-        <Input label="Email" name="username" />
+        <Input label="Email Address" name="email" />
         <Input label="Password" name="password" type="password" />
 
         <Button

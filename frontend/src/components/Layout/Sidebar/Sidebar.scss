@@ -1,11 +1,13 @@
 .Sidebar {
   section {
-    background-color: #dddddd;
+    background-color: #fff;
     width: 300px;
+    top: 65px;
     height: calc(100vh -  64px);
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
+    border-right: 0.1px solid #dadada;
 
     .user {
       margin: 30px 30px;

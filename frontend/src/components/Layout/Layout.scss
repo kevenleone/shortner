@@ -1,6 +1,6 @@
 .Layout {
-  background-color: rgb(237, 240, 242) !important;
-  min-height: 96vh;
+  background-color: #EDF2F5;
+  min-height: 100vh;
 
   .head {
     margin: 40px 0px;
@@ -9,11 +9,12 @@
   .content {
     max-height: 100vh;
     overflow: auto;
-    margin-top: 2%;
-    margin-left: 350px;
+    margin-top: 40px;
+    margin-left: 340px;
 
-    h1 {
-      color: hsl(257, 27%, 26%);
+    span {
+      font-size: 26px;
+      color: #4A5568;
     }
   }
 

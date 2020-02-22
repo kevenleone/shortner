@@ -33,7 +33,7 @@ export default function Dashboard() {
         <Col className="chartArea" xs={6}>
           <Composed />
         </Col>
-        <Col className="chartArea" xs={4}>
+        <Col className="chartArea" xs={6}>
           <Line />
         </Col>
       </Row>

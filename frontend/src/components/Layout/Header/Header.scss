@@ -1,10 +1,24 @@
 .Header {
+  position: fixed;
+  top: 0;
+  background-color: #4A5568;
+  height: 65px;
+  display: flex;
+  width: 100%;
 
-  .euiHeader {
-    position: fixed !important;
-    width: 100%;
-    top: 0;
-    z-index: 999;
-    min-height: auto;
+  .left {
+    display: flex;
+    background-color: #3A4353;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 0px;
+    margin: 0px;
+
+    span {
+      color: white;
+      font-weight: 600;
+      font-size: 26px;
+    }
   }
 }
