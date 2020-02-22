@@ -9,7 +9,7 @@ import { Form } from '@unform/web';
 export { Form };
 
 export default function InputField({
-  label, name, type, placeholder,
+  label, name, type, placeholder, className, id,
 }) {
   const inputRef = useRef(null);
   const {
@@ -25,18 +25,19 @@ export default function InputField({
   }, [fieldName, registerField]);
 
   const inputProps = {
+    id,
     type,
     error,
+    className,
     placeholder,
     defaultValue,
   };
 
   return (
-    <FormGroup>
+    <FormGroup className={className}>
       <Label>{label}</Label>
-      <Input innerRef={inputRef} invalid={!!error} className="form-control" {...inputProps} />
+      <Input defaultChecked innerRef={inputRef} invalid={!!error} {...inputProps} />
       <FormFeedback color="danger">{error}</FormFeedback>
-
     </FormGroup>
   );
 }
@@ -44,12 +45,16 @@ export default function InputField({
 InputField.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
+  className: PropTypes.string,
+  id: PropTypes.string,
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
 };
 
 InputField.defaultProps = {
+  id: '',
   label: '',
   type: 'text',
+  className: '',
   placeholder: '',
 };

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { baseURL } from '../../services/api';
@@ -7,6 +8,7 @@ import Table from '../../components/Table';
 import Section from '../../components/Layout/Section';
 
 export default function () {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const { shortners } = useSelector((state) => state.shortner);
 
@@ -17,24 +19,14 @@ export default function () {
   const actions = [
     {
       name: 'Delete',
-      description: 'Delete this user',
-      icon: 'trash',
-      color: 'danger',
-      type: 'icon',
       onClick: () => {},
     },
     {
       name: 'Edit',
-      description: 'Edit this user',
-      icon: 'pencil',
-      type: 'icon',
       onClick: () => {},
     },
     {
       name: 'Share',
-      description: 'Share this user',
-      icon: 'share',
-      type: 'icon',
       onClick: () => {},
     },
   ];
@@ -42,7 +34,6 @@ export default function () {
     {
       field: 'active',
       name: 'Active',
-      dataType: 'boolean',
       render: (active) => {
         const color = active ? 'green' : 'red';
         return <span style={{ color, fontSize: 16 }}> &ensp; ●</span>;
@@ -51,7 +42,6 @@ export default function () {
     {
       field: 'hash',
       name: 'Shorten Link',
-      sortable: true,
       render: (name) => {
         const link = `${baseURL}/r/${name}`;
         return <a target="__blank" href={link}>{link}</a>;
@@ -65,7 +55,6 @@ export default function () {
     {
       field: 'created_at',
       name: 'Created At',
-      dataType: 'date',
       render: (date) => moment(date).toISOString(),
     },
     {
@@ -81,15 +70,23 @@ export default function () {
 
 
   return (
-    <>
-      <Section title="Link Management">
-        <Add />
-        <Table
-          columns={columns}
-          items={shortners}
-        />
-      </Section>
-    </>
+    <Section title="Shortner List">
+      <Button
+        outline
+        onClick={() => setShowModal(true)}
+      >
+          Register Shortner
+      </Button>
+      <Add
+        items={shortners}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+      <Table
+        columns={columns}
+        items={shortners}
+      />
+    </Section>
   );
 }
 

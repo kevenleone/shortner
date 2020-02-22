@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Octicon } from 'octicons-react';
 import { useSelector } from 'react-redux';
 import { Routes } from '../../../routelist';
-import Unknown from '../../../assets/images/unknown.png';
+import Avatar from '../../Avatar';
 import './Sidebar.scss';
 
 export default function Sidebar() {
@@ -13,7 +13,7 @@ export default function Sidebar() {
     <div className="Sidebar">
       <section>
         <div className="user">
-          <img src={photo || Unknown} alt={`${username} photograph`} />
+          <Avatar img={photo} />
           <span className="username">{username}</span>
           <span>{organization}</span>
         </div>

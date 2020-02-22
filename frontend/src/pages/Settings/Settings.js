@@ -6,6 +6,7 @@ import {
 import Section from '../../components/Layout/Section';
 import Input, { Form } from '../../components/Form/Input';
 import schemas, { setErrors } from '../../config/schemas';
+import Avatar from '../../components/Avatar';
 import './Settings.scss';
 
 export default function Settings() {
@@ -37,10 +38,13 @@ export default function Settings() {
   return (
     <div className="Settings">
       <Section title="User Settings">
-        <Form ref={formRef} initialData={loggedUser} onSubmit={handleSubmit}>
+        <Form
+          ref={formRef}
+          initialData={loggedUser}
+          onSubmit={handleSubmit}
+        >
           <div className="center">
-            <img src={loggedUser.photo} className="avatar" alt="" id="output" />
-            <br />
+            <Avatar img={loggedUser.photo} id="output" />
             <Label htmlFor="upload-photo">Select Photo</Label>
             <input onChange={handleLoadPreview} type="file" name="img" id="upload-photo" />
           </div>
