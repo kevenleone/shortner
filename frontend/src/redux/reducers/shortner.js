@@ -1,5 +1,10 @@
+import { constants } from '../../utils';
+
+const { dashboard } = constants;
+
 const INITIAL_STATE = {
   shortners: [],
+  dashboard,
 };
 
 export default function (state = INITIAL_STATE, action) {

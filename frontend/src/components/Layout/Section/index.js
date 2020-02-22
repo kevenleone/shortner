@@ -3,19 +3,17 @@ import {
   Card, CardBody, CardHeader, CardTitle,
 } from 'reactstrap';
 
-export default function index({ children, title }) {
+export default function index({ children, title, className }) {
   return (
-    <div>
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            {title}
-          </CardTitle>
-        </CardHeader>
-        <CardBody>
-          { children }
-        </CardBody>
-      </Card>
-    </div>
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle>
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardBody>
+        { children }
+      </CardBody>
+    </Card>
   );
 }

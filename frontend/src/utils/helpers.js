@@ -14,3 +14,7 @@ export function readProp(object, prop, defaultValue) {
   }
   return defaultValue;
 }
+
+export function normalizeToArray(variable) {
+  return typeof variable === 'string' ? [variable] : variable;
+}

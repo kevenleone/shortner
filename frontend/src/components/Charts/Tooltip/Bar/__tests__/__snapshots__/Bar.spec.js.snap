@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bar should render null 1`] = `ShallowWrapper {}`;
+
+exports[`Bar should render with success 1`] = `ShallowWrapper {}`;

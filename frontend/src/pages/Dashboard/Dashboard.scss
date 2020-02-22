@@ -1,30 +1,41 @@
 .Dashboard {
-  .cards {
-    margin-top: 3%;
+  height: 100%;
+  .row {
+    margin-bottom: 30px;
   }
 
-  .chartArea {
-    background-color: white;
-    padding: 20px;
-    margin-right: 20px;
+  div.time {
+    padding: 10px 0;
+    text-align: center;
+    p {
+      font-size: 66px;
+    }
   }
 
-  .card {
-    padding: 20px;
-    margin: 10px 50px 50px 0px;
-    min-width: 200px;
+  .month-summary {
+    margin: -20px 0px 20px 30px;
+    color: #555;
 
-    h3 {
-      font-size: 16px;
-      margin-bottom: 40px;
+    div.active {
+      border-top: 3px solid #0B5FFF !important;
+      color: #111;
+
+      button {
+        color: #111;
+        font-weight: 400;
+      }
     }
 
-    span.value {
-      font-size: 24px;
+    p {
+      font-size: 46px;
     }
 
-    span.info {
-      font-size: 14px;
+    button, button:focus {
+      background-color: transparent;
+      color: #555;
+      font-weight: 300;
+      margin-left: -10px;
+      border: none;
     }
   }
 }

@@ -1,8 +1,6 @@
 import { call, put } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 import api from '../../services/api';
-import { constants } from '../../config';
-
-const { TOAST: { ERROR } } = constants;
 
 export function* getMyShortners() {
   try {
@@ -12,13 +10,7 @@ export function* getMyShortners() {
       payload: response.data.shortners,
     });
   } catch (e) {
-    yield put({
-      type: 'ADD_TOAST',
-      payload: {
-        ...ERROR,
-        text: e.message,
-      },
-    });
+    toast.error(e.message);
   }
 }
 
@@ -30,12 +22,6 @@ export function* createShortner(action) {
       payload: response.data,
     });
   } catch (e) {
-    yield put({
-      type: 'ADD_TOAST',
-      payload: {
-        ...ERROR,
-        text: e.message,
-      },
-    });
+    toast.error(e.message);
   }
 }

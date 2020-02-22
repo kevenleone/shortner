@@ -12,10 +12,8 @@ export default function LinkForm({ showModal, setShowModal, items }) {
   const formRef = useRef(null);
 
   useEffect(() => {
-    if (showModal) {
-      setShowModal(false);
-    }
-  }, [items]);
+    setShowModal(false);
+  }, [items, setShowModal]);
 
   async function handleSubmit(payload) {
     try {

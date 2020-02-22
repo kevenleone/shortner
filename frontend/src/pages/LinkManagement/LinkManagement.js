@@ -14,7 +14,7 @@ export default function () {
 
   useEffect(() => {
     dispatch({ type: 'GET_MYSHORTNERS_SAGA' });
-  }, []);
+  }, [dispatch]);
 
   const actions = [
     {
@@ -87,6 +87,7 @@ export default function () {
         items={shortners}
       />
     </Section>
+
   );
 }
 

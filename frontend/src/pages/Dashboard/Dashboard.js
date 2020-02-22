@@ -1,41 +1,28 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
-import Line from '../../components/Charts/Line';
-import Composed from '../../components/Charts/Composed/Composed';
+import { When } from 'react-if';
+
+import Section from '../../components/Layout/Section';
+import charts from '../../config/charts';
 import './Dashboard.scss';
 
 export default function Dashboard() {
+  const { dashboard } = useSelector((state) => state.shortner);
   return (
     <div className="Dashboard">
-      <Row className="cards">
-        <Col className="card">
-          <h3>Sales Today</h3>
-          <span className="value">1.500</span>
-          <span className="info">Since last week</span>
-        </Col>
-        <Col className="card">
-          <h3>Sales Today</h3>
-          <span className="value">1.500</span>
-          <span className="info">Since last week</span>
-        </Col>
-        <Col className="card">
-          <h3>Sales Today</h3>
-          <span className="value">1.500</span>
-          <span className="info">Since last week</span>
-        </Col>
-        <Col className="card">
-          <h3>Sales Today</h3>
-          <span className="value">1.500</span>
-          <span className="info">Since last week</span>
-        </Col>
-      </Row>
       <Row>
-        <Col className="chartArea" xs={6}>
-          <Composed />
-        </Col>
-        <Col className="chartArea" xs={6}>
-          <Line />
-        </Col>
+        { charts.map(({
+          key, title, cols, render: { Component, props },
+        }) => (
+          <Col key={key} {...cols}>
+            <Section title={title} className="mb-5">
+              <When condition={!!Component}>
+                <Component data={dashboard[key] ? dashboard[key].data : null} {...props} />
+              </When>
+            </Section>
+          </Col>
+        ))}
       </Row>
     </div>
   );

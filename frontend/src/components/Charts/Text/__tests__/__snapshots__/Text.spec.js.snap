@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should render with success 1`] = `ShallowWrapper {}`;
