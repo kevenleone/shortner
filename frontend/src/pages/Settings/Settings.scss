@@ -1,0 +1,28 @@
+.Settings {
+  .center {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0px;
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 60px;
+    }
+
+    input {
+      opacity: 10;
+      position: absolute;
+      z-index: -1;
+    }
+
+    label {
+      position: absolute;
+      margin-top: 80px;
+      font-size: 13px;
+      cursor: pointer;
+      color: lightcoral;
+      font-weight: 600;
+    }
+  }
+}

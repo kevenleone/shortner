@@ -1,13 +1,13 @@
 .Layout {
   background-color: #EDF2F5;
-  min-height: 100vh;
+  min-height: 96vh;
 
   .head {
     margin: 40px 0px;
   }
 
   .content {
-    max-height: 100vh;
+    max-height: 96vh;
     overflow: auto;
     margin-top: 40px;
     margin-left: 340px;
@@ -19,6 +19,6 @@
   }
 
   .children_content {
-    margin-right: 20px;
+    margin-right: 40px;
   }
 }

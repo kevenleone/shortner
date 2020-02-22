@@ -3,17 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { baseURL } from '../../services/api';
 import Add from '../../components/Link/Add';
+import Table from '../../components/Table';
+import Section from '../../components/Layout/Section';
 
 export default function () {
   const dispatch = useDispatch();
   const { shortners } = useSelector((state) => state.shortner);
 
-  function getAllShortners() {
-  }
-
   useEffect(() => {
     dispatch({ type: 'GET_MYSHORTNERS_SAGA' });
-    getAllShortners();
   }, []);
 
   const actions = [
@@ -24,7 +22,6 @@ export default function () {
       color: 'danger',
       type: 'icon',
       onClick: () => {},
-      'data-test-subj': 'action-delete',
     },
     {
       name: 'Edit',
@@ -32,7 +29,6 @@ export default function () {
       icon: 'pencil',
       type: 'icon',
       onClick: () => {},
-      'data-test-subj': 'action-edit',
     },
     {
       name: 'Share',
@@ -40,29 +36,31 @@ export default function () {
       icon: 'share',
       type: 'icon',
       onClick: () => {},
-      'data-test-subj': 'action-share',
     },
   ];
   const columns = [
     {
-      field: 'hash_link',
+      field: 'active',
+      name: 'Active',
+      dataType: 'boolean',
+      render: (active) => {
+        const color = active ? 'green' : 'red';
+        return <span style={{ color, fontSize: 16 }}> &ensp; ●</span>;
+      },
+    },
+    {
+      field: 'hash',
       name: 'Shorten Link',
       sortable: true,
       render: (name) => {
         const link = `${baseURL}/r/${name}`;
+        return <a target="__blank" href={link}>{link}</a>;
       },
     },
     {
-      field: 'original_link',
+      field: 'url',
       name: 'Original Link',
-      truncateText: true,
-      sortable: true,
-    },
-    {
-      field: 'hits',
-      name: 'Hits',
-      sortable: true,
-      dataType: 'number',
+      render: (link) => <a target="__blank" href={link}>{link}</a>,
     },
     {
       field: 'created_at',
@@ -70,15 +68,10 @@ export default function () {
       dataType: 'date',
       render: (date) => moment(date).toISOString(),
     },
-
     {
-      field: 'active',
-      name: 'Active',
-      dataType: 'boolean',
-      render: (active) => {
-        const color = active ? 'success' : 'danger';
-        const label = active ? 'Online' : 'Offline';
-      },
+      field: 'hits',
+      name: 'Hits',
+      render: (hits, { hits_limit }) => `${hits} / ${hits_limit || 'Unlimited'}`,
     },
     {
       name: 'Actions',
@@ -86,36 +79,16 @@ export default function () {
     },
   ];
 
-  const getRowProps = (item) => {
-    const { id } = item;
-    return {
-      'data-test-subj': `row-${id}`,
-      className: 'customRowClass',
-      onClick: () => console.log(`Clicked row ${id}`),
-    };
-  };
-
-  const getCellProps = (item, column) => {
-    const { id } = item;
-    const { field } = column;
-    return {
-      className: 'customCellClass',
-      'data-test-subj': `cell-${id}-${field}`,
-      textOnly: true,
-    };
-  };
 
   return (
     <>
-      <Add />
-      {/* <EuiInMemoryTable
-        items={shortners}
-        columns={columns}
-        rowProps={getRowProps}
-        cellProps={getCellProps}
-        sorting
-        hasActions={actions}
-      /> */}
+      <Section title="Link Management">
+        <Add />
+        <Table
+          columns={columns}
+          items={shortners}
+        />
+      </Section>
     </>
   );
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Row } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Form } from '@unform/web';
 import { Input } from '../../Form';
 
@@ -40,6 +40,7 @@ export default function SignIn() {
         <hr />
 
         <Button
+          disabled={softLoading}
           type="submit"
           color="primary"
         >

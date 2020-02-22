@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import {
-  Label, FormGroup,
+  Label, FormFeedback, Input, FormGroup,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
+import { Form } from '@unform/web';
+
+export { Form };
 
 export default function InputField({
   label, name, type, placeholder,
@@ -31,7 +34,9 @@ export default function InputField({
   return (
     <FormGroup>
       <Label>{label}</Label>
-      <input className="form-control" ref={inputRef} {...inputProps} />
+      <Input innerRef={inputRef} invalid={!!error} className="form-control" {...inputProps} />
+      <FormFeedback color="danger">{error}</FormFeedback>
+
     </FormGroup>
   );
 }
