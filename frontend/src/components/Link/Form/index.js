@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Row, Col, Label, Button,
 } from 'reactstrap';
@@ -18,10 +19,9 @@ export default function LinkForm({ showModal, setShowModal, items }) {
   async function handleSubmit(payload) {
     try {
       await schemas.shortner.basic.validate(payload, { abortEarly: false });
-      dispatch({
-        type: 'ADD_SHORTNER_SAGA',
-        payload,
-      });
+      console.log({ payload });
+      return;
+      dispatch({ type: 'ADD_SHORTNER_SAGA', payload });
     } catch (e) {
       setErrors(e, formRef);
     }
@@ -61,3 +61,14 @@ export default function LinkForm({ showModal, setShowModal, items }) {
     </div>
   );
 }
+
+LinkForm.propTypes = {
+  showModal: PropTypes.bool,
+  setShowModal: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+};
+
+LinkForm.defaultProps = {
+  showModal: false,
+  items: [],
+};

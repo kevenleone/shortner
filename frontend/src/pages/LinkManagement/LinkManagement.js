@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from 'reactstrap';
 import moment from 'moment';
-import { baseURL } from '../../services/api';
-import Add from '../../components/Link/Add';
+
 import Table from '../../components/Table';
+import { baseURL } from '../../services/api';
+import Form from '../../components/Link/Form';
 import Section from '../../components/Layout/Section';
 
 export default function () {
@@ -77,7 +78,7 @@ export default function () {
       >
           Register Shortner
       </Button>
-      <Add
+      <Form
         items={shortners}
         showModal={showModal}
         setShowModal={setShowModal}

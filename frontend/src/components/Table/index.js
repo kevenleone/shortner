@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  Table as CustomTable, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem,
+  Table as CustomTable,
+  UncontrolledButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from 'reactstrap';
-
 import './Table.scss';
 
 export default function Table({ items, columns = [] }) {
@@ -25,22 +29,23 @@ export default function Table({ items, columns = [] }) {
                 let data = item[field];
                 if (name === 'Actions') {
                   return (
-                    <UncontrolledButtonDropdown className="dropmenu">
-                      <DropdownToggle caret size="sm">
-                        Options
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        { actions.map((action) => (
-                          <DropdownItem
-                            key={action.name}
-                            onClick={() => action.onClick(item)}
-                          >
-                            {action.name}
-
-                          </DropdownItem>
-                        )) }
-                      </DropdownMenu>
-                    </UncontrolledButtonDropdown>
+                    <td key={i}>
+                      <UncontrolledButtonDropdown className="dropmenu">
+                        <DropdownToggle caret size="sm">
+                          Options
+                        </DropdownToggle>
+                        <DropdownMenu>
+                          { actions.map((action, id) => (
+                            <DropdownItem
+                              key={id}
+                              onClick={() => action.onClick(item)}
+                            >
+                              {action.name}
+                            </DropdownItem>
+                          )) }
+                        </DropdownMenu>
+                      </UncontrolledButtonDropdown>
+                    </td>
                   );
                 }
                 if (render && render(data, item)) {
@@ -57,3 +62,13 @@ export default function Table({ items, columns = [] }) {
     </div>
   );
 }
+
+Table.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object),
+  columns: PropTypes.arrayOf(PropTypes.object),
+};
+
+Table.defaultProps = {
+  items: [],
+  columns: [],
+};
