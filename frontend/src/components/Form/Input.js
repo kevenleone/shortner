@@ -4,12 +4,9 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
-import { Form } from '@unform/web';
-
-export { Form };
 
 export default function InputField({
-  label, name, type, placeholder, className, id,
+  label, name, type, placeholder, className, id = name,
 }) {
   const inputRef = useRef(null);
   const {
@@ -52,7 +49,6 @@ InputField.propTypes = {
 };
 
 InputField.defaultProps = {
-  id: '',
   label: '',
   type: 'text',
   className: '',

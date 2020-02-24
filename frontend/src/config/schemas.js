@@ -1,10 +1,8 @@
 import * as Yup from 'yup';
 
-const { ValidationError } = Yup;
-
-function setErrors(err, ref) {
+export function setErrors(err, ref) {
   const validationErrors = {};
-  if (err instanceof ValidationError) {
+  if (err instanceof Yup.ValidationError) {
     err.inner.forEach((error) => {
       validationErrors[error.path] = error.message;
     });
@@ -13,10 +11,18 @@ function setErrors(err, ref) {
   return validationErrors;
 }
 
-export { ValidationError, setErrors };
-
 export default {
   user: {
+    signUp: Yup.object().shape({
+      email: Yup.string().email().required(),
+      password: Yup.string().min(3),
+      username: Yup.string().required(),
+      organization: Yup.string(),
+    }),
+    signIn: Yup.object().shape({
+      email: Yup.string().email().required(),
+      password: Yup.string().required(),
+    }),
     update: Yup.object().shape({
       username: Yup.string().required(),
       email: Yup.string().required(),

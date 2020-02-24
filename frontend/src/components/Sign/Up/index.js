@@ -1,19 +1,25 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef } from 'react';
 import { Button } from 'reactstrap';
-import { Form } from '@unform/web';
-import { Input } from '../../Form';
+import { useDispatch } from 'react-redux';
+import Input, { Form } from '../../Form';
+import schemas, { setErrors } from '../../../config/schemas';
 import './Up.scss';
 
 export default function SignUp() {
+  const formRef = useRef(null);
   const dispatch = useDispatch();
 
   function openSignInPage() {
     dispatch({ type: 'SET_PAGETYPE_SAGA', payload: { pageType: 'SignIn' } });
   }
 
-  function handleSubmit(payload) {
-    dispatch({ type: 'SIGNUP_SAGA', payload });
+  async function handleSubmit(payload) {
+    try {
+      await schemas.user.signUp.validate(payload, { abortEarly: false })
+      dispatch({ type: 'SIGNUP_SAGA', payload });
+    } catch (e) {
+      setErrors(e, formRef)
+    }
   }
 
   return (
@@ -30,7 +36,7 @@ export default function SignUp() {
       </Button>
       <hr />
 
-      <Form onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <Input name="username" label="Full Name" />
         <Input name="organization" label="Organization" />
         <Input name="email" label="Email Address" />

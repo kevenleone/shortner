@@ -4,7 +4,7 @@ import {
   Row, Col, Label, Button,
 } from 'reactstrap';
 import Section from '../../components/Layout/Section';
-import Input, { Form } from '../../components/Form/Input';
+import Input, { Form } from '../../components/Form';
 import schemas, { setErrors } from '../../config/schemas';
 import Avatar from '../../components/Avatar';
 import './Settings.scss';

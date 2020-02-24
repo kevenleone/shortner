@@ -5,7 +5,7 @@ import {
   Row, Col, Label, Button,
 } from 'reactstrap';
 import Modal, { Footer } from '../../Modal';
-import Input, { Form } from '../../Form/Input';
+import Input, { Form } from '../../Form';
 import schemas, { setErrors } from '../../../config/schemas';
 
 export default function LinkForm({ showModal, setShowModal, items }) {

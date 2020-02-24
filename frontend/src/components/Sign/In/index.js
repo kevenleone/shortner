@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'reactstrap';
-import { Form } from '@unform/web';
-import { Input } from '../../Form';
+import Input, { Form } from '../../Form';
+import schemas, { setErrors } from '../../../config/schemas';
 
 import './In.scss';
 
 export default function SignIn() {
   const { softLoading } = useSelector((state) => state.base);
   const dispatch = useDispatch();
+  const formRef = useRef(null);
 
   function openSignUpPage() {
     dispatch({ type: 'SET_PAGETYPE_SAGA', payload: { pageType: 'SignUp' } });
   }
 
-  function handleSubmit(payload) {
-    dispatch({ type: 'SIGNIN_SAGA', payload });
+  async function handleSubmit(payload) {
+    try {
+      await schemas.user.signIn.validate(payload, { abortEarly: false });
+      dispatch({ type: 'SIGNIN_SAGA', payload });
+    } catch (e) {
+      setErrors(e, formRef);
+    }
   }
 
   return (
@@ -24,7 +30,7 @@ export default function SignIn() {
 
       <hr />
 
-      <Form onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit}>
         <Input label="Email Address" name="email" />
         <Input label="Password" name="password" type="password" />
 
