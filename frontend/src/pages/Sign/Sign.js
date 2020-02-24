@@ -7,7 +7,7 @@ import Logo from '../../assets/images/short2.png';
 import './Sign.scss';
 
 export default function Sign() {
-  const { pageType } = useSelector((state) => state.base);
+  const { pageType } = useSelector((state) => state.user);
   return (
     <div className="Sign">
       <div className="left">

@@ -10,12 +10,9 @@ import Avatar from '../../components/Avatar';
 import './Settings.scss';
 
 export default function Settings() {
-  const {
-    loggedUser,
-  } = useSelector((state) => state.base);
   const [preview, setPreview] = useState('');
-
   const formRef = useRef(null);
+  const { me } = useSelector((state) => state.user);
 
   const handlePreview = useCallback((e) => {
     const file = e.target.files[0];
@@ -42,11 +39,11 @@ export default function Settings() {
       <Section title="User Settings">
         <Form
           ref={formRef}
-          initialData={loggedUser}
+          initialData={me}
           onSubmit={handleSubmit}
         >
           <div className="center">
-            <Avatar img={preview || loggedUser.photo} />
+            <Avatar img={preview || me.photo} />
             <Label htmlFor="upload-photo">Select Photo</Label>
             <input onChange={handlePreview} type="file" name="img" id="upload-photo" />
           </div>

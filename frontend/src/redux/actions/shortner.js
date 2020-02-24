@@ -1,14 +1,11 @@
 import { call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
-import api from '../../services/api';
+import { generators } from '../../utils';
 
 export function* getMyShortners() {
   try {
-    const response = yield call(api.get, '/shortner');
-    yield put({
-      type: 'GET_ALL_SHORTNER',
-      payload: response.data.shortners,
-    });
+    const response = yield call(generators.fetchApi, { url: '/shortner', loading: true });
+    yield put({ type: 'GET_ALL_SHORTNER', payload: response.shortners });
   } catch (e) {
     toast.error(e.message);
   }
@@ -16,11 +13,13 @@ export function* getMyShortners() {
 
 export function* createShortner(action) {
   try {
-    const response = yield call(api.post, '/shortner', action.payload);
-    yield put({
-      type: 'ADD_SHORTNER',
-      payload: response.data,
+    const response = yield call(generators.fetchApi, {
+      method: 'post',
+      url: '/shortner',
+      body: action.payload,
+      loading: true,
     });
+    yield put({ type: 'ADD_SHORTNER', payload: response.data });
   } catch (e) {
     toast.error(e.message);
   }

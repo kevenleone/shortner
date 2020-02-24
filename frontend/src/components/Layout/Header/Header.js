@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'reactstrap';
 import './Header.scss';
 
 const Header = () => {
-  function handleLogout() {
-    localStorage.removeItem('@token');
-    localStorage.removeItem('@me');
-    window.location.href = '/sign';
-  }
+  const dispatch = useDispatch();
+  const handleLogout = useCallback(() => {
+    dispatch({ type: 'SIGNOUT_SAGA' });
+  });
 
   return (
     <div className="Header">
-
       <div className="left">
         <span>Shortly</span>
       </div>

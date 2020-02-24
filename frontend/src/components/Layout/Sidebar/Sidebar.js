@@ -8,7 +8,7 @@ import './Sidebar.scss';
 
 export default function Sidebar() {
   const { pathname } = window.location;
-  const { loggedUser: { username, photo, organization } } = useSelector((state) => state.base);
+  const { me: { username, photo, organization } } = useSelector((state) => state.user);
   return (
     <div className="Sidebar">
       <section>
