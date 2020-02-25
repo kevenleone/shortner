@@ -19,7 +19,7 @@ export default function Avatar(props) {
 
 Avatar.propTypes = {
   img: PropTypes.string,
-  me: PropTypes.objectOf(PropTypes.object)
+  me: PropTypes.objectOf(PropTypes.any)
 }
 
 Avatar.defaultProps = {

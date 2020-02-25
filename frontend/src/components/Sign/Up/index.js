@@ -13,10 +13,10 @@ export default function SignUp() {
     dispatch({ type: 'SET_PAGETYPE_SAGA', payload: { pageType: 'SignIn' } });
   }
 
-  async function handleSubmit(payload) {
+  async function handleSubmit(data) {
     try {
-      await schemas.user.signUp.validate(payload, { abortEarly: false })
-      dispatch({ type: 'SIGNUP_SAGA', payload });
+      await schemas.user.signUp.validate(data, { abortEarly: false })
+      dispatch({ type: 'SIGNUP_SAGA', payload: { data, formRef } });
     } catch (e) {
       setErrors(e, formRef)
     }

@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 export function readProp(object, prop, defaultValue) {
   const props = (typeof prop === 'string') ? prop.split('.') : [];
   let ret = typeof object === 'object' && object !== null ? object : { };
@@ -13,6 +15,13 @@ export function readProp(object, prop, defaultValue) {
     return ret;
   }
   return defaultValue;
+}
+
+export function handleToast(response, preffix = '') {
+  const message = readProp(response, `${preffix}data.message`, '');
+  if (message) {
+    toast[preffix ? 'error' : 'success'](message);
+  }
 }
 
 export function normalizeToArray(variable) {

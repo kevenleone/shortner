@@ -1,10 +1,9 @@
 import { call, put } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 import { push, replace } from 'connected-react-router';
 import { generators } from '../../utils';
 
 export function* signUp(action) {
-  const body = action.payload;
+  const { data: body, formRef } = action.payload;
 
   try {
     yield call(generators.fetchApi, {
@@ -16,7 +15,7 @@ export function* signUp(action) {
     delete body.password;
     yield put({ type: 'SET_FORMUSER', payload: body });
   } catch (e) {
-    toast.error(e.message);
+    formRef.current.setErrors({ email: 'Email Already Exists' });
   }
 }
 
@@ -30,13 +29,12 @@ export function* signIn(action) {
       body,
       softLoading: true,
     });
-    localStorage.setItem('@token', response.token.token);
+    const data = response.data;
+    localStorage.setItem('@token', data.token.token);
     delete body.password;
-    yield put({ type: 'SET_LOGGEDUSER', payload: response });
+    yield put({ type: 'SET_LOGGEDUSER', payload: data });
     yield put(push('/dashboard'));
-  } catch (e) {
-    toast.error(e.message);
-  }
+  } catch (e) {}
 }
 
 export function* signOut() {

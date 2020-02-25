@@ -73,7 +73,7 @@ export default function LinkForm({ showModal, setShowModal, items }) {
             options={selectBoolean} 
           />
           <Footer toggle={() => setShowModal(false)}>
-            <Button outline color="info" type="submit">Salvar</Button>
+            <Button outline color="info" type="submit">Save</Button>
           </Footer>
         </Form>
       </Modal>
