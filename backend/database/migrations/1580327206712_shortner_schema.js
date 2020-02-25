@@ -8,8 +8,9 @@ class ShortnerSchema extends Schema {
     this.create('shortners', (table) => {
       table.increments();
       table.string('hash', 10).notNullable();
-      table.string('url', 240).notNullable();
-      table.integer('expires_in');
+      table.string('url', 500).notNullable();
+      table.datetime('expires_in');
+      table.string('not_available_in', 500);
       table.integer('hits_limit').defaultTo(0);
       table.boolean('active').defaultTo(true);
       table.integer('hits').defaultTo(0);

@@ -37,13 +37,17 @@ class ShortnerController {
    * @param {Response} ctx.response
    */
   async store ({ request, auth }) {
-    const data = request.only(['url', 'active']);
+    const data = request.only(['url', 'active', 'hits_limit', 'expires_in', 'not_available_in']);
+    const active = !!data.active;
     const [hash] = uuid().split('-');
+    const not_available_in = JSON.stringify(data.not_available_in);
     const shortner = await Shortner.create({
-      hits: 0,
       user_id: auth.user.id,
+      ...data,
+      not_available_in,
+      hits: 0,
+      active,
       hash,
-      ...data
     });
     return shortner;
   }
