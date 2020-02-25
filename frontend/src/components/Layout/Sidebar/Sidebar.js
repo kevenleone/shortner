@@ -8,12 +8,13 @@ import './Sidebar.scss';
 
 export default function Sidebar() {
   const { pathname } = window.location;
-  const { me: { username, photo, organization } } = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.user);
+  const { username, organization } = me;
   return (
     <div className="Sidebar">
       <section>
         <div className="user">
-          <Avatar img={photo} />
+          <Avatar me={me} />
           <span className="username">{username}</span>
           <span>{organization}</span>
         </div>

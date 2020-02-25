@@ -1,6 +1,6 @@
 import { Form } from '@unform/web';
 import Input from './Input';
+import DatePicker from './DatePicker';
+import Select from './Select';
 
-export { Form };
-
-export default Input;
+export { Form, DatePicker, Select, Input };

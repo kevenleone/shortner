@@ -2,11 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
-  Row, Col, Label, Button,
+  Row, Col, Button,
 } from 'reactstrap';
 import Modal, { Footer } from '../../Modal';
-import Input, { Form } from '../../Form';
+import { Input, Select, DatePicker, Form } from '../../Form';
 import schemas, { setErrors } from '../../../config/schemas';
+import { constants } from '../../../utils';
+
+const { selectBoolean, countries: countriesList } = constants;
+const countries = countriesList.map(({code: value, emoji, name}) => ({ value, label: `${emoji} ${name}` }));
 
 export default function LinkForm({ showModal, setShowModal, items }) {
   const dispatch = useDispatch();
@@ -38,21 +42,36 @@ export default function LinkForm({ showModal, setShowModal, items }) {
           onSubmit={handleSubmit}
           initialData={{ active: true, hits_limit: 0 }}
         >
-          <Input label="Original URL" name="url" />
+          <Input 
+            label="Original URL" 
+            name="url" 
+          />
           <Row>
             <Col>
-              <Input label="Hits Limit" name="hits_limit" />
+              <Input
+                type="number" 
+                label="Hits Limit" 
+                name="hits_limit" />
             </Col>
             <Col>
-              <Input type="datetime-local" label="Expires In" name="expires_in" />
+              <DatePicker 
+                label="Expires In" 
+                name="expires_in" 
+              />
             </Col>
           </Row>
-          <Row>
-            <Col className="ml-4" style={{ display: 'flex' }}>
-              <Input type="checkbox" name="expires_in" id="expires_in" />
-              <Label htmlFor="expires_in">Active</Label>
-            </Col>
-          </Row>
+          <Select 
+            label="Not available in" 
+            isMulti 
+            name="not_available_in" 
+            options={countries} 
+          />
+           <Select 
+            label="Link is active ?" 
+            name="active"
+            defaultValue={selectBoolean[0]} 
+            options={selectBoolean} 
+          />
           <Footer toggle={() => setShowModal(false)}>
             <Button outline color="info" type="submit">Salvar</Button>
           </Footer>

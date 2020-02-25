@@ -1,3 +1,4 @@
+import countries from './countries'
 
 export default {
   AVERAGE_MERGE: 'Average Merge Time by Pull Request Size',
@@ -34,4 +35,6 @@ export default {
   chart: {
     colors: ['#4B9BFF', '#0BB5FF', '#6CA6CD', '#36648B'],
   },
+  countries,
+  selectBoolean: [{ value: 1, label: 'Yes' }, { value: 0, label: 'No' }]
 };

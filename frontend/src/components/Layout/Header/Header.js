@@ -5,9 +5,10 @@ import './Header.scss';
 
 const Header = () => {
   const dispatch = useDispatch();
+  
   const handleLogout = useCallback(() => {
     dispatch({ type: 'SIGNOUT_SAGA' });
-  });
+  }, [dispatch]);
 
   return (
     <div className="Header">

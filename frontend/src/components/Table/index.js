@@ -21,6 +21,15 @@ export default function Table({ items, columns = [] }) {
           </tr>
         </thead>
         <tbody>
+            
+            { items.length === 0 && (
+              <tr>
+                <td align="center" colSpan={columns.length}>
+                  No Items to show 
+                </td>
+              </tr>
+            ) }
+            
           { items.map(((item, index) => (
             <tr key={index}>
               { columns.map(({

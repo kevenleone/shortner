@@ -4,7 +4,7 @@ import {
   Row, Col, Label, Button,
 } from 'reactstrap';
 import Section from '../../components/Layout/Section';
-import Input, { Form } from '../../components/Form';
+import { Input, Form } from '../../components/Form';
 import schemas, { setErrors } from '../../config/schemas';
 import Avatar from '../../components/Avatar';
 import './Settings.scss';
@@ -43,7 +43,7 @@ export default function Settings() {
           onSubmit={handleSubmit}
         >
           <div className="center">
-            <Avatar img={preview || me.photo} />
+            <Avatar me={me} img={preview} />
             <Label htmlFor="upload-photo">Select Photo</Label>
             <input onChange={handlePreview} type="file" name="img" id="upload-photo" />
           </div>

@@ -28,7 +28,7 @@ export function* fetchApi(params) {
     err = e;
   }
 
-  yield delay(1500);
+  yield delay(1000);
   yield handleLoading(LOADING_TYPE);
 
   if (err) {

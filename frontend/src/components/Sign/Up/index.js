@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Button } from 'reactstrap';
 import { useDispatch } from 'react-redux';
-import Input, { Form } from '../../Form';
+import { Input, Form } from '../../Form';
 import schemas, { setErrors } from '../../../config/schemas';
 import './Up.scss';
 
