@@ -33,8 +33,8 @@ export default {
   shortner: {
     basic: Yup.object().shape({
       url: Yup.string().url().required(),
-      hits_limit: Yup.number(),
-      expires_in: Yup.string(),
+      hits_limit: Yup.number().min(0).max(999999999),
+      expires_in: Yup.string().nullable(),
     }),
   },
 };

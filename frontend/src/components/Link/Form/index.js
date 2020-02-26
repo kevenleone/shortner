@@ -12,7 +12,7 @@ import { constants } from '../../../utils';
 const { selectBoolean, countries: countriesList } = constants;
 const countries = countriesList.map(({code: value, emoji, name}) => ({ value, label: `${emoji} ${name}` }));
 
-export default function LinkForm({ showModal, setShowModal, items }) {
+export default function LinkForm({ dispatchType, initialData, showModal, setShowModal, items }) {
   const dispatch = useDispatch();
   const formRef = useRef(null);
 
@@ -20,13 +20,17 @@ export default function LinkForm({ showModal, setShowModal, items }) {
     setShowModal(false);
   }, [items, setShowModal]);
 
-  async function handleSubmit(payload) {
+  async function handleSubmit(data) {
     try {
-      await schemas.shortner.basic.validate(payload, { abortEarly: false });
-      console.log({ payload });
-      return;
-      dispatch({ type: 'ADD_SHORTNER_SAGA', payload });
+      await schemas.shortner.basic.validate(data, { abortEarly: false });
+      const payload = {
+        ...data,
+        active: !!data.active,
+        ...( data.expires_in && { expires_in: new Date(data.expires_in).toISOString() } ),
+      }
+      dispatch({ type: dispatchType, payload });
     } catch (e) {
+      console.log(e)
       setErrors(e, formRef);
     }
   }
@@ -40,7 +44,7 @@ export default function LinkForm({ showModal, setShowModal, items }) {
         <Form
           ref={formRef}
           onSubmit={handleSubmit}
-          initialData={{ active: true, hits_limit: 0 }}
+          initialData={initialData}
         >
           <Input 
             label="Original URL" 
