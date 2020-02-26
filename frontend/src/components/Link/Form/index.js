@@ -24,9 +24,12 @@ export default function LinkForm({ dispatchType, initialData, showModal, setShow
     try {
       await schemas.shortner.basic.validate(data, { abortEarly: false });
       const payload = {
-        ...data,
-        active: !!data.active,
-        ...( data.expires_in && { expires_in: new Date(data.expires_in).toISOString() } ),
+        initialData,
+        body: {
+          ...data,
+          active: !!data.active,
+          ...( data.expires_in && { expires_in: new Date(data.expires_in).toISOString() } ),
+        }
       }
       dispatch({ type: dispatchType, payload });
     } catch (e) {

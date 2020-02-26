@@ -29,19 +29,19 @@ export default function() {
 
   const actions = [
     {
-      name: "Delete",
-      onClick: () => {
-        alert('bu')
-      }
-    },
-    {
       name: "Edit",
       onClick: (data) => {
         if (data.not_available_in) {
           data.not_available_in = JSON.parse(data.not_available_in);
         }
-        console.log(data.not_available_in)
-        handleModal(true, 'UPDATE_SHORTNER_SAGA', data)
+        data.expires_in = data.expires_in ? new Date(data.expires_in) : ''
+        handleModal(true, 'UPD_SHORTNER_SAGA', data)
+      }
+    },
+    {
+      name: "Delete",
+      onClick: ({ id }) => {
+        dispatch({ type: 'DEL_SHORTNER_SAGA', payload: id })
       }
     },
     {

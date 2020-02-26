@@ -15,6 +15,17 @@ export default function (state = INITIAL_STATE, action) {
     case 'GET_ALL_SHORTNER': {
       return { ...state, shortners: action.payload };
     }
+    case 'UPD_SHORTNER': {
+      return { ...state, shortners: state.shortners.map(shortner => {
+        if (shortner.id === action.payload.id) {
+          return action.payload;
+        }
+        return shortner;
+      }) }
+    }
+    case 'DEL_SHORTNER': {
+      return { ...state, shortners: state.shortners.filter(shortner => shortner.id !== action.payload)}
+    }
     default:
       return state;
   }

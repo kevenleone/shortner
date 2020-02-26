@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 import { setPageType } from './actions/base';
 import { signUp, signIn, signOut } from './actions/user';
-import { getMyShortners, createShortner } from './actions/shortner';
+import { getMyShortners, createShortner, updateShortner, deleteShortner } from './actions/shortner';
 
 export default function* root() {
   yield takeLatest('SET_PAGETYPE_SAGA', setPageType);
@@ -12,4 +12,6 @@ export default function* root() {
 
   yield takeLatest('GET_MYSHORTNERS_SAGA', getMyShortners);
   yield takeLatest('ADD_SHORTNER_SAGA', createShortner);
+  yield takeLatest('UPD_SHORTNER_SAGA', updateShortner);
+  yield takeLatest('DEL_SHORTNER_SAGA', deleteShortner);
 }
