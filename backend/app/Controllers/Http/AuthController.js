@@ -33,7 +33,7 @@ class AuthController extends BaseController {
         user
       }
 
-      this.sendResponse({ response, data, message });
+      this.sendResponse({ response, data });
     } catch (e) {
       this.sendResponse({ response, status: 400, message: `User not exists` });
     }

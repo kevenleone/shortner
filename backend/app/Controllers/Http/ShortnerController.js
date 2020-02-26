@@ -5,12 +5,14 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const uuid = require('uuid/v4');
+const BaseController = require('../BaseController');
+
 const Shortner = use('App/Models/Shortner');
 
 /**
  * Resourceful controller for interacting with shortners
  */
-class ShortnerController {
+class ShortnerController extends BaseController {
   /**
    * Show a list of all shortners.
    * GET shortners
@@ -36,9 +38,8 @@ class ShortnerController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, auth }) {
+  async store ({ request, response, auth }) {
     const data = request.only(['url', 'active', 'hits_limit', 'expires_in', 'not_available_in']);
-    const active = !!data.active;
     const [hash] = uuid().split('-');
     const not_available_in = JSON.stringify(data.not_available_in);
     const shortner = await Shortner.create({
@@ -46,10 +47,10 @@ class ShortnerController {
       ...data,
       not_available_in,
       hits: 0,
-      active,
       hash,
     });
-    return shortner;
+
+    this.sendResponse({ response, data: shortner, message: this.constants.SHORTNER_CREATED_SUCCESS })
   }
 
   /**
