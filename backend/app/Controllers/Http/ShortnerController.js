@@ -96,6 +96,7 @@ class ShortnerController extends BaseController {
       return response.status(401);
     }
     await shortner.delete();
+    this.sendResponse({ response, message: this.constants.SHORTNER_DELETED_SUCCESS });
   }
 }
 
